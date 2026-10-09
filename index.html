@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#173e35" />
+    <meta
+      name="description"
+      content="木拾光 DIY 木珠搭配：自由选择木珠、玉珠和矿珠，实时预览自己的手串。"
+    />
+    <title>木拾光 · DIY 木珠搭配</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="sheet" class="sheet-wrap" aria-hidden="true"></div>
+
+    <script>
+      window.module = { exports: {} };
+      window.exports = {};
+    </script>
+    <script src="./data/materials.js"></script>
+    <script src="./texture.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
