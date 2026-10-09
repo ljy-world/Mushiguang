@@ -1,0 +1,6397 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#173e35" />
+    <title>木拾光 · DIY 木珠搭配</title>
+    <style>:root {
+  --ink: #172b25;
+  --muted: #79837e;
+  --green: #1f5a4d;
+  --green-dark: #173e35;
+  --green-soft: #e7f0ec;
+  --paper: #f6f4ef;
+  --surface: #fffdf9;
+  --line: #dfe5e1;
+  --danger: #a64f35;
+  --gold: #c49a59;
+  --shadow: 0 18px 50px rgba(24, 51, 44, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 7% 4%, rgba(93, 151, 129, 0.12), transparent 24rem),
+    linear-gradient(180deg, #e9eee9 0%, var(--paper) 26rem, var(--paper) 100%);
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding-bottom: 92px;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  padding: 13px 20px;
+  border-bottom: 1px solid rgba(31, 90, 77, 0.08);
+  background: rgba(246, 244, 239, 0.9);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: #f2d29b;
+  border-radius: 14px;
+  background: var(--green-dark);
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.brand-name {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.brand-sub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.top-action {
+  padding: 10px 14px;
+  color: var(--green);
+  border: 1px solid rgba(31, 90, 77, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.page {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+.mobile-nav {
+  position: fixed;
+  z-index: 50;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(31, 90, 77, 0.09);
+  background: rgba(255, 253, 249, 0.96);
+  box-shadow: 0 -12px 34px rgba(24, 51, 44, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.nav-button {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #7d8681;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  font-size: 13px;
+}
+
+.nav-button.active {
+  color: var(--green);
+  background: var(--green-soft);
+  font-weight: 800;
+}
+
+.nav-icon {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 34px 0 18px;
+}
+
+.section-title {
+  margin: 0;
+  color: #1c372f;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+}
+
+.section-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.inspiration-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.inspiration-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.inspiration-tabs button {
+  flex: 0 0 auto;
+  padding: 8px 11px;
+  color: #69736e;
+  border: 1px solid #dfe4e1;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 10px;
+}
+
+.inspiration-tabs button.active {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+  font-weight: 800;
+}
+
+.surface {
+  border: 1px solid rgba(36, 73, 62, 0.1);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 22px;
+  border-radius: 15px;
+  font-weight: 800;
+}
+
+.primary-button {
+  color: #fff;
+  border: 1px solid var(--green-dark);
+  background: var(--green-dark);
+  box-shadow: 0 12px 25px rgba(23, 62, 53, 0.18);
+}
+
+.secondary-button {
+  color: var(--green);
+  border: 1px solid #bdd0c7;
+  background: var(--green-soft);
+}
+
+.ghost-button {
+  color: #56615c;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.icon-button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--green);
+  border: 1px solid #d8e0dc;
+  border-radius: 13px;
+  background: #fff;
+  font-size: 20px;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 570px;
+  overflow: hidden;
+  padding: 40px 28px 26px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(164, 205, 184, 0.27), transparent 28rem),
+    linear-gradient(145deg, #143a31, #23594b 64%, #17382f);
+}
+
+.hero::after {
+  position: absolute;
+  right: -140px;
+  bottom: -170px;
+  width: 460px;
+  height: 460px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  content: "";
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  align-self: start;
+}
+
+.eyebrow {
+  color: #b7d4c7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.hero h1 {
+  max-width: 540px;
+  margin: 16px 0 0;
+  color: #fff;
+  font-family: "STSong", "Songti SC", serif;
+  font-size: clamp(38px, 7vw, 62px);
+  font-weight: 700;
+  line-height: 1.16;
+}
+
+.hero p {
+  max-width: 510px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.hero .primary-button {
+  color: #173e35;
+  border-color: #f2d29b;
+  background: #f2d29b;
+  box-shadow: none;
+}
+
+.hero .ghost-button {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  width: min(390px, 88vw);
+  aspect-ratio: 1;
+  align-self: end;
+  justify-self: center;
+  margin: 28px auto -8px;
+}
+
+.wood-board {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 10px solid rgba(201, 169, 112, 0.72);
+  border-radius: 50%;
+  background-color: #3f2b21;
+  background-image: var(--board-texture);
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 20px 55px rgba(0, 0, 0, 0.42), 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.board-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 64%;
+  border: var(--cord-width, 1px) solid var(--cord-color, rgba(255, 240, 213, 0.36));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.board-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: rgba(255, 244, 221, 0.2);
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.bead {
+  position: absolute;
+  z-index: 3;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  box-shadow:
+    0 7px 12px rgba(0, 0, 0, 0.46),
+    inset -5px -7px 11px rgba(0, 0, 0, 0.28),
+    inset 3px 4px 8px rgba(255, 255, 255, 0.16);
+  filter: contrast(1.07) saturate(1.05);
+  transition: transform 0.16s ease;
+}
+
+.bead:hover {
+  transform: scale(1.08);
+}
+
+.bead::after {
+  position: absolute;
+  top: 14%;
+  left: 18%;
+  width: 29%;
+  height: 22%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.63);
+  filter: blur(2px);
+  content: "";
+}
+
+.bead.square {
+  border-radius: 12px;
+}
+
+.bead.hex {
+  border-radius: 15px;
+  transform: rotate(18deg);
+}
+
+.feature-grid,
+.template-grid,
+.knowledge-grid,
+.order-grid,
+.stats-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.feature-grid {
+  grid-template-columns: 1fr;
+}
+
+.feature-card {
+  padding: 22px;
+}
+
+.feature-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  color: var(--green);
+  border-radius: 14px;
+  background: var(--green-soft);
+  font-weight: 800;
+}
+
+.feature-card h3 {
+  margin: 16px 0 7px;
+  font-size: 18px;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.template-card {
+  overflow: hidden;
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.template-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(24, 51, 44, 0.14);
+}
+
+.template-preview {
+  position: relative;
+  width: min(280px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto 18px;
+}
+
+.template-card h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.template-card p {
+  min-height: 44px;
+  margin: 8px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.package-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.package-card {
+  min-width: 0;
+  padding: 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(24, 51, 44, 0.14);
+}
+
+.package-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.package-audience {
+  padding: 6px 9px;
+  color: var(--green);
+  border-radius: 999px;
+  background: var(--green-soft);
+  font-weight: 800;
+}
+
+.package-preview {
+  position: relative;
+  width: min(240px, 90%);
+  aspect-ratio: 1;
+  margin: 12px auto;
+}
+
+.package-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.package-card p {
+  min-height: 42px;
+  margin: 7px 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.package-detail-hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 22px;
+  padding: 28px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(190, 218, 201, 0.25), transparent 18rem),
+    linear-gradient(145deg, #173e35, #245b4e);
+}
+
+.package-detail-hero h2 {
+  margin: 13px 0 0;
+  color: #fff;
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 31px;
+}
+
+.package-detail-hero p {
+  max-width: 700px;
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.benefit-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.benefit-list span {
+  padding: 7px 10px;
+  color: #dcebe4;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 10px;
+}
+
+.package-detail-price {
+  min-width: 150px;
+  align-self: center;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: right;
+}
+
+.package-detail-price span,
+.package-detail-price small {
+  display: block;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 10px;
+}
+
+.package-detail-price strong {
+  display: block;
+  margin: 7px 0;
+  color: #f2d29b;
+  font-size: 30px;
+}
+
+.tier-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.tier-card {
+  padding: 19px;
+  border-width: 2px;
+  cursor: pointer;
+}
+
+.tier-card.active {
+  border-color: #6f9e88;
+  box-shadow: 0 15px 38px rgba(31, 90, 77, 0.14);
+}
+
+.tier-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tier-head span {
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.tier-head h3 {
+  margin: 4px 0 0;
+  font-size: 19px;
+}
+
+.tier-head > strong {
+  font-size: 23px;
+}
+
+.tier-card > p {
+  min-height: 42px;
+  margin: 11px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.tier-materials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tier-materials span {
+  padding: 5px 8px;
+  color: #4d6057;
+  border-radius: 999px;
+  background: #edf2ee;
+  font-size: 9px;
+}
+
+.tier-card ul {
+  margin: 13px 0 0;
+  padding-left: 18px;
+  color: #5f6b65;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.tier-foot {
+  margin-top: 13px;
+  padding-top: 12px;
+  color: #8b938f;
+  border-top: 1px solid #eceeea;
+  font-size: 10px;
+}
+
+.package-preview-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.package-preview-card {
+  padding: 18px;
+}
+
+.package-preview-label,
+.combo-preview-label {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.package-large-preview {
+  position: relative;
+  width: min(390px, 100%);
+  aspect-ratio: 1.04;
+  margin: 8px auto;
+}
+
+.package-preview-meta {
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.package-options {
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.package-options h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.package-options > p {
+  margin: 8px 0 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.package-feature-note {
+  margin-top: 16px;
+  padding: 13px 14px;
+  border-left: 4px solid #b98c4e;
+  border-radius: 0 12px 12px 0;
+  background: #f6f0e4;
+}
+
+.package-feature-note strong {
+  display: block;
+  color: #6d4e25;
+  font-size: 12px;
+}
+
+.package-feature-note span {
+  display: block;
+  margin-top: 5px;
+  color: #8b714d;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.quantity-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.quantity-table > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px;
+  border-radius: 11px;
+  background: #f0f3ef;
+  font-size: 10px;
+}
+
+.quantity-table strong {
+  color: var(--green);
+}
+
+.corporate-flow {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: #5d6963;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.combo-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.combo-summary > div {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f1f4f0;
+}
+
+.combo-summary span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.combo-summary strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.package-detail-actions {
+  position: static;
+  z-index: 20;
+  bottom: 82px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 17px;
+  background: rgba(255, 253, 249, 0.96);
+  box-shadow: 0 15px 38px rgba(24, 51, 44, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.package-detail-actions .primary-button {
+  min-width: 260px;
+}
+
+.color-advice {
+  margin-top: 16px;
+  padding: 17px;
+  border: 1px solid #dfe7e2;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #eef4f0, #f9f8f2);
+}
+
+.color-advice__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.color-advice__head strong {
+  display: block;
+  color: #29443a;
+  font-size: 15px;
+}
+
+.color-advice__head span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.color-advice__title {
+  margin-top: 0 !important;
+  color: var(--green) !important;
+  font-size: 11px !important;
+  font-weight: 800;
+}
+
+.color-advice > p {
+  margin: 12px 0 0;
+  color: #40544b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.color-advice > small {
+  display: block;
+  margin-top: 5px;
+  color: #748079;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.palette-row {
+  display: grid;
+  gap: 7px;
+  margin-top: 13px;
+}
+
+.palette-row button {
+  padding: 10px 11px;
+  border: 1px solid #d9e2dd;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.78);
+  text-align: left;
+}
+
+.palette-row button span {
+  display: block;
+  color: #385248;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.palette-row button small {
+  display: block;
+  margin-top: 3px;
+  color: #8a938f;
+  font-size: 9px;
+}
+
+.service-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 86% 15%, rgba(190, 218, 201, 0.28), transparent 18rem),
+    linear-gradient(145deg, #173e35, #245b4e);
+}
+
+.service-avatar {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--green-dark);
+  border-radius: 50%;
+  background: #f2d29b;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.service-hero h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 23px;
+}
+
+.service-hero p {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.service-online {
+  margin-left: auto;
+  padding: 7px 10px;
+  color: #d9f4e6;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+}
+
+.service-grid {
+  display: grid;
+  gap: 17px;
+  margin-top: 18px;
+}
+
+.service-form,
+.service-info {
+  padding: 22px;
+}
+
+.service-form h2,
+.service-info h2 {
+  margin: 0 0 10px;
+}
+
+.service-form > .primary-button {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.faq-item {
+  padding: 13px 0;
+  border-bottom: 1px solid #eceeea;
+}
+
+.faq-item:last-child {
+  border-bottom: 0;
+}
+
+.faq-item strong {
+  font-size: 13px;
+}
+
+.faq-item p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.service-history {
+  margin: 18px 5px 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.checkout-board.is-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.checkout-board.is-pair > div {
+  width: 100%;
+}
+
+.combo-order-note {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px;
+  border-radius: 13px;
+  background: #eef3ef;
+}
+
+.combo-order-note span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.combo-order-note strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.template-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #64706a;
+  font-size: 12px;
+}
+
+.price {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+.design-layout {
+  display: grid;
+  gap: 20px;
+}
+
+.design-preview-panel {
+  position: relative;
+  padding: 20px;
+}
+
+.design-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.design-head h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.count-pill {
+  padding: 10px 14px;
+  color: var(--green);
+  border-radius: 999px;
+  background: var(--green-soft);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.product-config {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.config-block {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #e0e5e2;
+  border-radius: 14px;
+  background: #f7f8f4;
+}
+
+.config-block--wide {
+  grid-column: 1 / -1;
+}
+
+.config-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #77817c;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.segmented {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.segmented::-webkit-scrollbar {
+  display: none;
+}
+
+.segment {
+  min-width: 48px;
+  flex: 1 0 auto;
+  padding: 8px 9px;
+  color: #66716c;
+  border: 1px solid #dce2de;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.segment.active {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+  font-weight: 800;
+}
+
+.product-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  color: #7c8681;
+  font-size: 10px;
+}
+
+.product-note strong {
+  color: #3e554c;
+  font-size: 11px;
+}
+
+.design-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.design-stat {
+  padding: 12px 14px;
+  border: 1px solid #e2e7e4;
+  border-radius: 14px;
+  background: #f7f8f4;
+}
+
+.design-stat span,
+.design-stat small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.design-stat strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--green);
+  font-size: 17px;
+}
+
+.design-stat--price strong {
+  color: var(--danger);
+  font-size: 23px;
+}
+
+.design-stat small {
+  margin-top: 4px;
+}
+
+.design-board {
+  width: min(640px, 100%);
+  aspect-ratio: 1.08;
+  margin: 24px auto 0;
+}
+
+.wood-board.product-necklace .board-ring {
+  width: 78%;
+  height: 72%;
+}
+
+.wood-board.product-ring .board-ring {
+  width: 48%;
+  height: 46%;
+}
+
+.design-board .bead {
+  cursor: pointer;
+}
+
+.tools-row {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin-top: 16px;
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #65706b;
+  border: 0;
+  background: transparent;
+  font-size: 11px;
+}
+
+.tool-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--green);
+  border: 1px solid #d9e0dd;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 20px;
+}
+
+.tool.danger .tool-icon {
+  color: var(--danger);
+}
+
+.progress-wrap {
+  margin-top: 18px;
+}
+
+.progress-line {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfe5e1;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), #79a98d);
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.library-panel {
+  min-width: 0;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab {
+  flex: 0 0 auto;
+  padding: 11px 17px;
+  color: #64706a;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.category-tab.active {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+  font-weight: 800;
+}
+
+.selected-line {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-top: 13px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--green-soft);
+  scrollbar-width: none;
+}
+
+.selected-line:empty {
+  display: none;
+}
+
+.selected-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px 7px 7px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+}
+
+.mini-bead {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  box-shadow: inset -3px -4px 6px rgba(0, 0, 0, 0.22);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.material-card {
+  position: relative;
+  min-width: 0;
+  padding: 15px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--surface);
+  text-align: center;
+  transition: border-color 0.16s ease, transform 0.16s ease;
+}
+
+.material-card:hover {
+  border-color: #95b5a7;
+  transform: translateY(-2px);
+}
+
+.material-card.active {
+  border-color: #7cab95;
+  box-shadow: 0 10px 24px rgba(31, 90, 77, 0.1);
+}
+
+.material-bead {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  box-shadow:
+    0 8px 14px rgba(33, 29, 24, 0.2),
+    inset -5px -7px 10px rgba(0, 0, 0, 0.24),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.18);
+  filter: contrast(1.1) saturate(1.06);
+}
+
+.material-bead.square {
+  border-radius: 14px;
+}
+
+.material-bead.hex {
+  border-radius: 16px;
+  transform: rotate(18deg);
+}
+
+.usage-badge {
+  position: absolute;
+  top: 18px;
+  right: calc(50% - 44px);
+  display: grid;
+  min-width: 24px;
+  height: 24px;
+  place-items: center;
+  padding: 0 6px;
+  color: #fff;
+  border: 2px solid var(--surface);
+  border-radius: 999px;
+  background: var(--green);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.material-name {
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.material-meta {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.card-action {
+  min-height: 34px;
+  color: #60706a;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8f8f5;
+  font-size: 17px;
+}
+
+.card-action.add {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.design-actions {
+  position: relative;
+  z-index: 16;
+  display: grid;
+  grid-template-columns: 0.72fr 0.72fr 1.28fr;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 12px;
+  border: 1px solid rgba(31, 90, 77, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 253, 249, 0.96);
+  box-shadow: 0 16px 42px rgba(24, 51, 44, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.back-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 18px;
+}
+
+.back-row h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.checkout-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.checkout-preview {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.checkout-board {
+  position: relative;
+  width: min(310px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.fact {
+  padding: 13px;
+  border-radius: 13px;
+  background: #f1f3ef;
+}
+
+.fact span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.fact strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.form-card {
+  padding: 22px;
+}
+
+.form-card h2 {
+  margin: 0 0 18px;
+  font-size: 20px;
+}
+
+.field {
+  margin-top: 17px;
+}
+
+.field > label,
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #43534c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.text-control {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 13px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  background: #fbfbf8;
+}
+
+.text-control:focus {
+  border-color: #7cab95;
+  box-shadow: 0 0 0 3px rgba(31, 90, 77, 0.08);
+}
+
+textarea.text-control {
+  min-height: 82px;
+  resize: vertical;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.choice {
+  padding: 10px 13px;
+  color: #64706a;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fafaf7;
+  font-size: 12px;
+}
+
+.choice.active {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.switch-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #eceeea;
+}
+
+.switch-line small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.price-box {
+  padding: 22px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  color: #59645f;
+  font-size: 13px;
+}
+
+.price-row.total {
+  margin-top: 8px;
+  padding-top: 15px;
+  color: var(--ink);
+  border-top: 1px solid #e5e8e6;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.checkout-note,
+.legal-note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 84% 15%, rgba(168, 211, 190, 0.28), transparent 18rem),
+    linear-gradient(145deg, #173e35, #245b4e);
+}
+
+.profile-avatar {
+  display: grid;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--green-dark);
+  border: 3px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: #f2d29b;
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.profile-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+}
+
+.profile-hero p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 16px;
+}
+
+.stat-card {
+  padding: 18px 8px;
+  text-align: center;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--green);
+  font-size: 24px;
+}
+
+.stat-card span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.menu-list {
+  overflow: hidden;
+  margin-top: 18px;
+}
+
+.menu-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 19px;
+  border: 0;
+  border-bottom: 1px solid #eceeea;
+  background: transparent;
+  text-align: left;
+}
+
+.menu-row:last-child {
+  border-bottom: 0;
+}
+
+.menu-symbol {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--green);
+  border-radius: 12px;
+  background: var(--green-soft);
+  font-weight: 800;
+}
+
+.menu-copy {
+  flex: 1;
+}
+
+.menu-copy strong {
+  display: block;
+  font-size: 14px;
+}
+
+.menu-copy span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.menu-arrow {
+  color: #a0a7a3;
+  font-size: 24px;
+}
+
+.saved-grid {
+  display: grid;
+  gap: 13px;
+  margin-top: 16px;
+}
+
+.saved-card,
+.order-card {
+  padding: 18px;
+}
+
+.saved-head,
+.order-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.saved-card h3,
+.order-card h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.saved-meta,
+.order-meta {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.status-pill {
+  padding: 7px 10px;
+  color: var(--green);
+  border-radius: 999px;
+  background: var(--green-soft);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.card-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.card-actions-row button {
+  flex: 1;
+  min-height: 38px;
+  border-radius: 11px;
+  font-size: 12px;
+}
+
+.small-link {
+  color: var(--danger);
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  padding: 34px;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 18px 0 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.empty-disc {
+  position: relative;
+  width: 170px;
+  height: 160px;
+  border: 6px solid var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 28%, #74543c, #281d17 72%);
+}
+
+.empty-disc::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62%;
+  height: 62%;
+  border: 1px solid rgba(255, 242, 220, 0.28);
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.empty-disc::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #83918d;
+  box-shadow: inset -4px -5px 8px rgba(0, 0, 0, 0.25);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.knowledge-hero {
+  padding: 32px 26px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(185, 214, 195, 0.26), transparent 18rem),
+    linear-gradient(145deg, #173e35, #245b4e);
+}
+
+.community-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 34px 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 86% 16%, rgba(190, 218, 201, 0.28), transparent 20rem),
+    linear-gradient(145deg, #173e35, #245b4e);
+}
+
+.community-hero h1 {
+  margin: 12px 0 0;
+  color: #fff;
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 38px;
+}
+
+.community-hero p {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.community-publish-button {
+  min-height: 46px;
+  flex: 0 0 auto;
+  padding: 0 18px;
+  color: var(--green-dark);
+  border: 1px solid #f2d29b;
+  border-radius: 14px;
+  background: #f2d29b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.community-grid {
+  display: grid;
+  gap: 17px;
+}
+
+.community-card {
+  padding: 18px;
+}
+
+.community-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.community-avatar {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #fff;
+  border-radius: 50%;
+  background: var(--green);
+  font-weight: 800;
+}
+
+.community-user strong {
+  display: block;
+  font-size: 13px;
+}
+
+.community-user span:not(.community-avatar):not(.community-type) {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.community-type {
+  margin-left: auto;
+  padding: 6px 8px;
+  color: #6d766f;
+  border-radius: 999px;
+  background: #f0f2ed;
+  font-size: 9px;
+}
+
+.community-board {
+  position: relative;
+  width: min(310px, 92%);
+  aspect-ratio: 1.06;
+  margin: 17px auto 10px;
+}
+
+.community-card h3 {
+  margin: 0;
+  color: #34483f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.community-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.community-meta .price {
+  margin-left: auto;
+}
+
+.community-actions {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.community-actions button {
+  min-height: 40px;
+  color: #52615a;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #f8f8f5;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.community-actions button.liked {
+  color: #a64f35;
+  border-color: #e6c8bd;
+  background: #f8ece8;
+}
+
+.community-note {
+  margin: 24px 5px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.knowledge-hero h1 {
+  margin: 12px 0 0;
+  color: #fff;
+  font-family: "STSong", "Songti SC", serif;
+  font-size: 34px;
+}
+
+.knowledge-hero p {
+  max-width: 620px;
+  margin: 13px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.knowledge-card {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 15px;
+  padding: 17px;
+}
+
+.knowledge-card .material-bead {
+  width: 72px;
+  height: 72px;
+}
+
+.knowledge-card h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.knowledge-card p {
+  margin: 7px 0 0;
+  color: #5e6b65;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.knowledge-tip {
+  margin-top: 8px;
+  color: #98703b;
+  font-size: 10px;
+}
+
+.care-card {
+  margin-top: 18px;
+  padding: 22px;
+}
+
+.care-card h2 {
+  margin: 0 0 12px;
+}
+
+.care-card p {
+  margin: 10px 0 0;
+  color: #61706a;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sheet-wrap {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  background: rgba(12, 25, 21, 0.48);
+}
+
+.sheet-wrap.open {
+  display: flex;
+}
+
+.sheet {
+  width: 100%;
+  max-height: 88vh;
+  overflow: auto;
+  padding: 20px 24px calc(28px + env(safe-area-inset-bottom));
+  border-radius: 26px 26px 0 0;
+  background: var(--surface);
+  animation: rise 0.22s ease-out;
+}
+
+.material-detail-title {
+  margin: 6px 0 0;
+  font-size: 25px;
+}
+
+.material-detail-meta {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.material-detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 18px;
+}
+
+.material-detail-chips span {
+  padding: 7px 10px;
+  color: var(--green);
+  border-radius: 999px;
+  background: var(--green-soft);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.material-detail-section {
+  margin-top: 17px;
+  padding-top: 15px;
+  border-top: 1px solid #eceeea;
+}
+
+.material-detail-section strong,
+.material-detail-warning strong {
+  display: block;
+  color: #31483f;
+  font-size: 13px;
+}
+
+.material-detail-section p,
+.material-detail-warning p {
+  margin: 7px 0 0;
+  color: #63706a;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.material-detail-warning {
+  margin-top: 17px;
+  padding: 13px 14px;
+  border-radius: 13px;
+  background: #f6efe2;
+}
+
+.material-detail-warning strong {
+  color: #805c2d;
+}
+
+.material-detail-sheet .primary-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.sheet-handle {
+  width: 50px;
+  height: 5px;
+  margin: 0 auto 20px;
+  border-radius: 99px;
+  background: #d7ddda;
+}
+
+.sheet-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.sheet-main .material-bead {
+  width: 76px;
+  height: 76px;
+  flex: 0 0 auto;
+}
+
+.sheet-main h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.sheet-main p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.sheet-note {
+  margin-top: 18px;
+  color: #53615b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.sheet-tip {
+  margin-top: 12px;
+  padding: 11px 12px;
+  color: #8c6734;
+  border-radius: 11px;
+  background: #f5eee1;
+  font-size: 11px;
+}
+
+.sheet .primary-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.publish-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.publish-sheet__head h3 {
+  margin: 6px 0 0;
+  font-size: 24px;
+}
+
+.publish-sheet__price {
+  color: var(--danger);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.publish-sheet__preview {
+  position: relative;
+  width: min(230px, 72vw);
+  aspect-ratio: 1;
+  margin: 10px auto 0;
+}
+
+.toast {
+  position: fixed;
+  z-index: 200;
+  top: 86px;
+  left: 50%;
+  padding: 12px 18px;
+  color: #fff;
+  border-radius: 999px;
+  background: rgba(17, 40, 33, 0.92);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (min-width: 760px) {
+  .package-detail-actions {
+    position: sticky;
+  }
+  .feature-grid,
+  .template-grid,
+  .knowledge-grid,
+  .order-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .material-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .package-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tier-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .package-preview-pair.is-pair,
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .palette-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .checkout-grid {
+    grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+    align-items: start;
+  }
+
+  .checkout-preview {
+    position: sticky;
+    top: 92px;
+  }
+}
+
+@media (min-width: 1040px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 228px minmax(0, 1fr);
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+
+  .topbar {
+    grid-column: 2;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .desktop-nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    height: 100vh;
+    flex-direction: column;
+    padding: 28px 18px;
+    border-right: 1px solid rgba(31, 90, 77, 0.09);
+    background: rgba(255, 253, 249, 0.82);
+    backdrop-filter: blur(18px);
+  }
+
+  .desktop-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 7px 30px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .desktop-nav .nav-button {
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .desktop-note {
+    margin: auto 10px 0;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.7;
+  }
+
+  .page {
+    grid-column: 2;
+    padding: 28px 34px 70px;
+  }
+
+  .package-grid,
+  .community-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 610px;
+    grid-template-columns: minmax(0, 1fr) minmax(390px, 0.9fr);
+    align-items: center;
+    padding: 52px;
+  }
+
+  .hero-copy {
+    align-self: center;
+  }
+
+  .hero-visual {
+    align-self: center;
+    margin: 0;
+  }
+
+  .design-layout {
+    grid-template-columns: minmax(440px, 0.95fr) minmax(420px, 1.05fr);
+    align-items: start;
+  }
+
+  .design-preview-panel {
+    position: sticky;
+    top: 96px;
+  }
+
+  .design-actions {
+    position: static;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .topbar {
+    min-height: 68px;
+    padding-inline: 15px;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .page {
+    padding: 18px 14px 38px;
+  }
+
+  .hero {
+    min-height: 600px;
+    padding: 32px 22px 20px;
+    border-radius: 24px;
+  }
+
+  .design-preview-panel {
+    padding: 15px 12px;
+  }
+
+  .product-config {
+    grid-template-columns: 1fr;
+  }
+
+  .design-board {
+    margin-top: 18px;
+  }
+
+  .community-hero {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 28px 22px;
+  }
+
+  .community-publish-button {
+    width: 100%;
+  }
+
+  .package-detail-hero {
+    grid-template-columns: 1fr;
+    padding: 23px 20px;
+  }
+
+  .package-detail-price {
+    text-align: left;
+  }
+
+  .package-detail-actions {
+    flex-direction: column;
+    bottom: 73px;
+  }
+
+  .package-detail-actions .primary-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .combo-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .service-hero {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .service-online {
+    margin-left: 0;
+  }
+
+  .material-grid {
+    gap: 9px;
+  }
+
+  .material-card {
+    padding-inline: 9px;
+  }
+
+  .stats-grid {
+    gap: 8px;
+  }
+}
+</style>
+  </head>
+  <body>
+    <div id="app">
+      <div style="display:grid;min-height:100vh;place-items:center;background:#f6f4ef;color:#1f5a4d;font-family:sans-serif;">
+        <div style="text-align:center;">
+          <div style="font-size:26px;font-weight:700;letter-spacing:.12em;">木拾光</div>
+          <div style="margin-top:10px;font-size:13px;color:#7a817d;">正在加载交互界面…</div>
+        </div>
+      </div>
+    </div>
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="sheet" class="sheet-wrap" aria-hidden="true"></div>
+    <script>
+window.module = { exports: {} };
+window.exports = {};
+const CATEGORY_LABELS = {
+  wood: "木材",
+  jade: "玉珠",
+  stone: "矿珠",
+  metal: "配饰",
+  shape: "随形"
+};
+
+function makeWoodBackground(item) {
+  const veil = item.veil || "rgba(255,255,255,0.14)";
+  return [
+    `radial-gradient(circle at 31% 24%, ${item.light} 0%, ${item.base} 38%, ${item.dark} 100%)`,
+    `repeating-linear-gradient(${item.angle || 18}deg, transparent 0px, transparent 3px, ${veil} 4px, transparent 6px, transparent 10px)`
+  ].join(", ");
+}
+
+function makeStoneBackground(item) {
+  return [
+    `radial-gradient(circle at 31% 24%, ${item.light} 0%, ${item.base} 43%, ${item.dark} 100%)`,
+    `conic-gradient(from ${item.angle || 20}deg at 66% 58%, transparent 0deg, ${item.veil} 34deg, transparent 66deg, ${item.veil} 112deg, transparent 160deg)`
+  ].join(", ");
+}
+
+function makeJadeBackground(item) {
+  return [
+    `radial-gradient(circle at 31% 24%, ${item.light} 0%, ${item.base} 45%, ${item.dark} 100%)`,
+    `linear-gradient(${item.angle || 128}deg, transparent 22%, ${item.veil} 49%, transparent 72%)`
+  ].join(", ");
+}
+
+const RAW_MATERIALS = [
+  {
+    id: "redSandalwood",
+    name: "小叶紫檀",
+    category: "wood",
+    size: 12,
+    price: 18,
+    base: "#5b1718",
+    dark: "#160a0b",
+    light: "#a74637",
+    veil: "rgba(255,190,167,0.18)",
+    angle: 22,
+    note: "深红至紫黑，棕眼细，密度高",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "oldSandalwood",
+    name: "老山檀",
+    category: "wood",
+    size: 12,
+    price: 16,
+    base: "#b98342",
+    dark: "#5c3216",
+    light: "#e8c58d",
+    veil: "rgba(255,237,192,0.22)",
+    angle: 12,
+    note: "黄褐色，木性细腻，带自然香气",
+    legalTip: "以实物检测和合法来源为准"
+  },
+  {
+    id: "broadleafRosewood",
+    name: "大叶紫檀",
+    category: "wood",
+    size: 12,
+    price: 14,
+    base: "#6d2022",
+    dark: "#260d0e",
+    light: "#b45646",
+    veil: "rgba(255,204,182,0.15)",
+    angle: 30,
+    note: "红褐色，结构细腻，光泽感明显",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "thuja",
+    name: "崖柏",
+    category: "wood",
+    size: 12,
+    price: 12,
+    base: "#d6ae6b",
+    dark: "#7d4e24",
+    light: "#f0d7a4",
+    veil: "rgba(119,73,30,0.18)",
+    angle: 8,
+    note: "浅黄至棕黄，年轮纹理清晰",
+    legalTip: "避免野生来源不明材料"
+  },
+  {
+    id: "bloodSandalwood",
+    name: "血檀",
+    category: "wood",
+    size: 12,
+    price: 15,
+    base: "#7d2021",
+    dark: "#2c0e0f",
+    light: "#c15346",
+    veil: "rgba(40,16,14,0.34)",
+    angle: 24,
+    note: "深红色，可见细腻黑褐色条纹",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "greenSandalwood",
+    name: "绿檀",
+    category: "wood",
+    size: 12,
+    price: 14,
+    base: "#637550",
+    dark: "#283426",
+    light: "#aabd82",
+    veil: "rgba(225,236,187,0.18)",
+    angle: 20,
+    note: "橄榄绿至墨绿，纹理自然",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "burmeseRosewood",
+    name: "缅甸花梨",
+    category: "wood",
+    size: 12,
+    price: 13,
+    base: "#b65c43",
+    dark: "#5a261e",
+    light: "#e4a27d",
+    veil: "rgba(255,218,188,0.2)",
+    angle: 16,
+    note: "暖红棕色，木纹细致清晰",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "redPadauk",
+    name: "红酸枝",
+    category: "wood",
+    size: 12,
+    price: 15,
+    base: "#7d2920",
+    dark: "#2f100d",
+    light: "#c75f47",
+    veil: "rgba(255,190,151,0.18)",
+    angle: 28,
+    note: "红褐色，结构致密，纹理质朴",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "yew",
+    name: "红豆杉",
+    category: "wood",
+    size: 12,
+    price: 13,
+    base: "#c99858",
+    dark: "#6a401d",
+    light: "#e8c694",
+    veil: "rgba(255,237,197,0.22)",
+    angle: 10,
+    note: "浅金褐色，纹理均匀，结构细致",
+    legalTip: "严禁采购来源不明或受保护材料"
+  },
+  {
+    id: "purpleWillow",
+    name: "紫檀柳",
+    category: "wood",
+    size: 12,
+    price: 16,
+    base: "#712929",
+    dark: "#291011",
+    light: "#b45b4c",
+    veil: "rgba(255,188,162,0.18)",
+    angle: 33,
+    note: "深红褐至紫褐色，花纹变化丰富",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "goldenCamphor",
+    name: "黄金樟",
+    category: "wood",
+    size: 12,
+    price: 14,
+    base: "#d5a342",
+    dark: "#795017",
+    light: "#f3d47f",
+    veil: "rgba(125,72,13,0.18)",
+    angle: 6,
+    note: "金黄色调，花纹绚丽，木质细腻",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "bloodDragon",
+    name: "血龙木",
+    category: "wood",
+    size: 12,
+    price: 17,
+    base: "#b93823",
+    dark: "#58130d",
+    light: "#e87d55",
+    veil: "rgba(255,211,174,0.18)",
+    angle: 24,
+    note: "橙红色调，金丝纹理，光泽度高",
+    legalTip: "经营前核验合法来源"
+  },
+  {
+    id: "whiteJade",
+    name: "白玉",
+    category: "jade",
+    size: 12,
+    price: 12,
+    base: "#e8e1cf",
+    dark: "#b9b29f",
+    light: "#fffdf3",
+    veil: "rgba(255,255,255,0.42)",
+    angle: 128,
+    note: "柔白温润，适合提亮整体配色",
+    legalTip: "玉石品类需按实际检测命名"
+  },
+  {
+    id: "celadonJade",
+    name: "青玉",
+    category: "jade",
+    size: 12,
+    price: 13,
+    base: "#9fb69d",
+    dark: "#536b59",
+    light: "#dce8d3",
+    veil: "rgba(255,255,255,0.32)",
+    angle: 130,
+    note: "灰绿色调，安静耐看",
+    legalTip: "玉石品类需按实际检测命名"
+  },
+  {
+    id: "greenJade",
+    name: "碧玉",
+    category: "jade",
+    size: 12,
+    price: 14,
+    base: "#47765c",
+    dark: "#173e31",
+    light: "#8fba91",
+    veil: "rgba(221,255,224,0.28)",
+    angle: 126,
+    note: "绿色饱满，适合自然木色搭配",
+    legalTip: "玉石品类需按实际检测命名"
+  },
+  {
+    id: "inkJade",
+    name: "墨玉",
+    category: "jade",
+    size: 12,
+    price: 15,
+    base: "#31463e",
+    dark: "#101b18",
+    light: "#71877a",
+    veil: "rgba(207,229,217,0.18)",
+    angle: 132,
+    note: "深墨绿色，沉静有分量",
+    legalTip: "玉石品类需按实际检测命名"
+  },
+  {
+    id: "sugarJade",
+    name: "糖玉",
+    category: "jade",
+    size: 12,
+    price: 16,
+    base: "#b86e3d",
+    dark: "#653017",
+    light: "#e5ad73",
+    veil: "rgba(255,224,184,0.28)",
+    angle: 124,
+    note: "红褐糖色，适合暖色系主题",
+    legalTip: "玉石品类需按实际检测命名"
+  },
+  {
+    id: "icyJade",
+    name: "翡翠晴水",
+    category: "jade",
+    size: 12,
+    price: 28,
+    base: "#8ecbd4",
+    dark: "#3f7e8f",
+    light: "#e3f7f5",
+    veil: "rgba(255,255,255,0.46)",
+    angle: 122,
+    note: "清透蓝绿色，用作视觉焦点",
+    legalTip: "翡翠品类需附真实检测结论"
+  },
+  {
+    id: "blackObsidian",
+    name: "黑曜石",
+    category: "stone",
+    size: 12,
+    price: 5,
+    base: "#242a2d",
+    dark: "#07090a",
+    light: "#657174",
+    veil: "rgba(211,236,236,0.22)",
+    angle: 18,
+    note: "深黑有光泽，适合日常基础款"
+  },
+  {
+    id: "rainbowObsidian",
+    name: "彩虹黑曜石",
+    category: "stone",
+    size: 12,
+    price: 7,
+    base: "#30343b",
+    dark: "#0c0d12",
+    light: "#7d8793",
+    veil: "rgba(120,204,205,0.32)",
+    angle: 40,
+    note: "深色中带有彩虹光泽",
+  },
+  {
+    id: "silverObsidian",
+    name: "银曜石",
+    category: "stone",
+    size: 12,
+    price: 12,
+    base: "#8fa0a1",
+    dark: "#3b4749",
+    light: "#e1e8e5",
+    veil: "rgba(255,247,212,0.38)",
+    angle: 52,
+    note: "银灰光泽，适合与深色木珠搭配"
+  },
+  {
+    id: "goldObsidian",
+    name: "金曜石",
+    category: "stone",
+    size: 12,
+    price: 8,
+    base: "#6c5b35",
+    dark: "#211d12",
+    light: "#c7a95b",
+    veil: "rgba(255,229,139,0.36)",
+    angle: 44,
+    note: "深棕底带金色光斑"
+  },
+  {
+    id: "goldenObsidian",
+    name: "金运石",
+    category: "stone",
+    size: 8,
+    price: 10,
+    base: "#a68a51",
+    dark: "#4c3516",
+    light: "#ead79e",
+    veil: "rgba(255,245,193,0.42)",
+    angle: 48,
+    note: "小巧金色反光，适合做间隔珠"
+  },
+  {
+    id: "iceObsidian",
+    name: "冰曜石",
+    category: "stone",
+    size: 12,
+    price: 6,
+    base: "#a8b7b4",
+    dark: "#5f7471",
+    light: "#e7f0ed",
+    veil: "rgba(245,255,252,0.38)",
+    angle: 54,
+    note: "灰绿色半透明质感"
+  },
+  {
+    id: "blueTigerEye",
+    name: "蓝虎眼",
+    category: "stone",
+    size: 12,
+    price: 14,
+    base: "#365a72",
+    dark: "#152b3c",
+    light: "#79a7bf",
+    veil: "rgba(187,231,255,0.35)",
+    angle: 58,
+    note: "深蓝灰底带丝绢光泽"
+  },
+  {
+    id: "metalSilver",
+    name: "银色隔珠",
+    category: "metal",
+    size: 8,
+    price: 4,
+    base: "#c6ccca",
+    dark: "#747d7b",
+    light: "#ffffff",
+    veil: "rgba(255,255,255,0.58)",
+    angle: 90,
+    note: "钛钢或合规金属材质，具体以供应商为准"
+  },
+  {
+    id: "metalGold",
+    name: "金色隔珠",
+    category: "metal",
+    size: 8,
+    price: 5,
+    base: "#d2ad55",
+    dark: "#806126",
+    light: "#fff0b8",
+    veil: "rgba(255,255,255,0.42)",
+    angle: 90,
+    note: "用于分隔颜色和调整节奏"
+  },
+  {
+    id: "titaniumRing",
+    name: "钛钢圆环",
+    category: "metal",
+    size: 10,
+    price: 6,
+    base: "#aeb5b4",
+    dark: "#505958",
+    light: "#f1f4f2",
+    veil: "rgba(255,255,255,0.44)",
+    angle: 90,
+    note: "金属配件需确认皮肤接触适用性"
+  },
+  {
+    id: "squareWood",
+    name: "方形木珠",
+    category: "shape",
+    size: 12,
+    price: 13,
+    base: "#9a6942",
+    dark: "#4c2c18",
+    light: "#d8ad7b",
+    veil: "rgba(255,228,198,0.2)",
+    angle: 18,
+    shape: "square",
+    note: "棱角经过圆润处理，适合个性搭配"
+  },
+  {
+    id: "hexWood",
+    name: "六棱木珠",
+    category: "shape",
+    size: 12,
+    price: 14,
+    base: "#6f4c32",
+    dark: "#2e1c11",
+    light: "#b9875e",
+    veil: "rgba(255,224,190,0.18)",
+    angle: 26,
+    shape: "hex",
+    note: "六棱切面带来更明显的光影变化"
+  }
+];
+
+function createBackground(item) {
+  if (item.category === "wood" || item.category === "shape") {
+    return makeWoodBackground(item);
+  }
+
+  if (item.category === "jade") {
+    return makeJadeBackground(item);
+  }
+
+  if (item.category === "stone") {
+    return makeStoneBackground(item);
+  }
+
+  return `radial-gradient(circle at 31% 24%, ${item.light} 0%, ${item.base} 44%, ${item.dark} 100%)`;
+}
+
+const MATERIALS = RAW_MATERIALS.map((item) => {
+  const background = createBackground(item);
+  return {
+    ...item,
+    categoryLabel: CATEGORY_LABELS[item.category],
+    background,
+    backgroundStyle: `background:${background};`
+  };
+});
+
+const MATERIAL_MAP = MATERIALS.reduce((map, item) => {
+  map[item.id] = item;
+  return map;
+}, {});
+
+function getMaterialById(id) {
+  return MATERIAL_MAP[id];
+}
+
+function getMaterialsByCategory(category) {
+  if (category === "all") {
+    return MATERIALS;
+  }
+
+  return MATERIALS.filter((item) => item.category === category);
+}
+
+module.exports = {
+  CATEGORY_LABELS,
+  MATERIALS,
+  getMaterialById,
+  getMaterialsByCategory
+};
+
+(function () {
+  "use strict";
+
+  const textureCache = {};
+
+  function hashString(value) {
+    let hash = 2166136261;
+    for (let index = 0; index < value.length; index += 1) {
+      hash ^= value.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function createRandom(seed) {
+    let state = seed >>> 0;
+    return function random() {
+      state += 0x6d2b79f5;
+      let value = state;
+      value = Math.imul(value ^ (value >>> 15), value | 1);
+      value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+      return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function hexToRgb(hex) {
+    const value = hex.replace("#", "");
+    const normalized =
+      value.length === 3
+        ? value
+            .split("")
+            .map((character) => character + character)
+            .join("")
+        : value;
+    return {
+      r: parseInt(normalized.slice(0, 2), 16),
+      g: parseInt(normalized.slice(2, 4), 16),
+      b: parseInt(normalized.slice(4, 6), 16)
+    };
+  }
+
+  function rgba(hex, alpha) {
+    if (typeof hex === "string" && hex.trim().startsWith("rgba")) {
+      const values = hex
+        .replace(/^rgba?\(|\)$/g, "")
+        .split(",")
+        .map((value) => Number(value.trim()));
+      const sourceAlpha = Number.isFinite(values[3]) ? values[3] : 1;
+      return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${sourceAlpha * alpha})`;
+    }
+    const color = hexToRgb(hex);
+    return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+  }
+
+  function mixHex(first, second, amount) {
+    const a = hexToRgb(first);
+    const b = hexToRgb(second);
+    const channel = (start, end) => Math.round(start + (end - start) * amount);
+    return `rgb(${channel(a.r, b.r)}, ${channel(a.g, b.g)}, ${channel(a.b, b.b)})`;
+  }
+
+  function createCanvas(size) {
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    return canvas;
+  }
+
+  function addSurfaceNoise(ctx, size, random, opacity) {
+    const image = ctx.getImageData(0, 0, size, size);
+    for (let index = 0; index < image.data.length; index += 4) {
+      const noise = (random() - 0.5) * 34;
+      image.data[index] = Math.max(0, Math.min(255, image.data[index] + noise));
+      image.data[index + 1] = Math.max(0, Math.min(255, image.data[index + 1] + noise));
+      image.data[index + 2] = Math.max(0, Math.min(255, image.data[index + 2] + noise));
+      image.data[index + 3] = Math.round(image.data[index + 3] * opacity);
+    }
+    ctx.putImageData(image, 0, 0);
+  }
+
+  function drawWoodTexture(ctx, item, size, random) {
+    const gradient = ctx.createLinearGradient(0, 0, size, size);
+    gradient.addColorStop(0, item.light);
+    gradient.addColorStop(0.42, item.base);
+    gradient.addColorStop(1, item.dark);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.save();
+    ctx.lineCap = "round";
+    for (let index = 0; index < 128; index += 1) {
+      const y = random() * size;
+      const amplitude = 4 + random() * 22;
+      const phase = random() * Math.PI * 2;
+      ctx.beginPath();
+      for (let x = -10; x <= size + 10; x += 5) {
+        const pointY = y + Math.sin(x / (18 + random() * 30) + phase) * amplitude;
+        if (x === -10) {
+          ctx.moveTo(x, pointY);
+        } else {
+          ctx.lineTo(x, pointY);
+        }
+      }
+      ctx.strokeStyle = random() > 0.48 ? rgba(item.dark, 0.14 + random() * 0.25) : rgba(item.light, 0.12 + random() * 0.2);
+      ctx.lineWidth = 0.7 + random() * 2.8;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    for (let index = 0; index < 420; index += 1) {
+      const x = random() * size;
+      const y = random() * size;
+      const length = 1 + random() * 7;
+      ctx.strokeStyle = rgba(item.dark, 0.13 + random() * 0.26);
+      ctx.lineWidth = 0.6 + random() * 1.7;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + length, y + (random() - 0.5) * 4);
+      ctx.stroke();
+    }
+
+    const glow = ctx.createRadialGradient(size * 0.28, size * 0.22, 0, size * 0.4, size * 0.38, size * 0.75);
+    glow.addColorStop(0, "rgba(255,255,255,0.34)");
+    glow.addColorStop(0.34, "rgba(255,255,255,0.07)");
+    glow.addColorStop(1, "rgba(0,0,0,0.18)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, size, size);
+    addSurfaceNoise(ctx, size, random, 0.9);
+  }
+
+  function drawJadeTexture(ctx, item, size, random) {
+    const gradient = ctx.createRadialGradient(size * 0.3, size * 0.24, 0, size * 0.54, size * 0.52, size * 0.9);
+    gradient.addColorStop(0, item.light);
+    gradient.addColorStop(0.43, item.base);
+    gradient.addColorStop(1, item.dark);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.save();
+    ctx.filter = "blur(10px)";
+    for (let index = 0; index < 36; index += 1) {
+      const x = random() * size;
+      const y = random() * size;
+      const radius = 12 + random() * 58;
+      const cloud = ctx.createRadialGradient(x, y, 0, x, y, radius);
+      cloud.addColorStop(0, rgba(random() > 0.35 ? item.light : item.veil, 0.27 + random() * 0.25));
+      cloud.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = cloud;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    ctx.save();
+    ctx.lineCap = "round";
+    for (let index = 0; index < 18; index += 1) {
+      const startX = -10 + random() * size;
+      const startY = random() * size;
+      const endX = 40 + random() * size;
+      const endY = random() * size;
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.bezierCurveTo(size * (0.2 + random() * 0.2), size * random(), size * (0.6 + random() * 0.2), size * random(), endX, endY);
+      ctx.strokeStyle = rgba(random() > 0.45 ? item.light : item.veil, 0.2 + random() * 0.24);
+      ctx.lineWidth = 0.9 + random() * 2.6;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    const wet = ctx.createLinearGradient(0, 0, size, size);
+    wet.addColorStop(0, "rgba(255,255,255,0.32)");
+    wet.addColorStop(0.24, "rgba(255,255,255,0.05)");
+    wet.addColorStop(0.62, "rgba(255,255,255,0.01)");
+    wet.addColorStop(1, "rgba(0,0,0,0.18)");
+    ctx.fillStyle = wet;
+    ctx.fillRect(0, 0, size, size);
+    addSurfaceNoise(ctx, size, random, 0.76);
+  }
+
+  function drawStoneTexture(ctx, item, size, random) {
+    const gradient = ctx.createRadialGradient(size * 0.31, size * 0.24, 0, size * 0.5, size * 0.46, size * 0.88);
+    gradient.addColorStop(0, item.light);
+    gradient.addColorStop(0.4, item.base);
+    gradient.addColorStop(1, item.dark);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.save();
+    ctx.translate(size / 2, size / 2);
+    for (let band = 0; band < 28; band += 1) {
+      ctx.rotate((Math.PI * 2) / 28);
+      const stripe = ctx.createLinearGradient(0, 0, size * 0.48, 0);
+      stripe.addColorStop(0, rgba(item.veil, 0));
+      stripe.addColorStop(0.45, rgba(item.veil, 0.12 + random() * 0.25));
+      stripe.addColorStop(1, rgba(item.veil, 0));
+      ctx.fillStyle = stripe;
+      ctx.beginPath();
+      ctx.moveTo(0, -1.5 - random() * 3);
+      ctx.lineTo(size * 0.48, -4 - random() * 9);
+      ctx.lineTo(size * 0.48, 4 + random() * 9);
+      ctx.lineTo(0, 1.5 + random() * 3);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+
+    for (let index = 0; index < 920; index += 1) {
+      const x = random() * size;
+      const y = random() * size;
+      const radius = 0.2 + random() * 1.25;
+      ctx.fillStyle = rgba(random() > 0.5 ? item.light : item.veil, 0.34 + random() * 0.74);
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    const sheen = ctx.createLinearGradient(0, 0, size, size);
+    sheen.addColorStop(0, "rgba(255,255,255,0.45)");
+    sheen.addColorStop(0.22, "rgba(255,255,255,0.05)");
+    sheen.addColorStop(0.45, "rgba(255,255,255,0)");
+    sheen.addColorStop(1, "rgba(0,0,0,0.25)");
+    ctx.fillStyle = sheen;
+    ctx.fillRect(0, 0, size, size);
+    addSurfaceNoise(ctx, size, random, 0.82);
+  }
+
+  function drawMetalTexture(ctx, item, size, random) {
+    const gradient = ctx.createLinearGradient(0, 0, size, size);
+    gradient.addColorStop(0, item.light);
+    gradient.addColorStop(0.45, item.base);
+    gradient.addColorStop(1, item.dark);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    for (let index = 0; index < 440; index += 1) {
+      const y = random() * size;
+      ctx.strokeStyle = random() > 0.5 ? rgba(item.light, 0.14 + random() * 0.3) : rgba(item.dark, 0.1 + random() * 0.2);
+      ctx.lineWidth = 0.45 + random() * 1.35;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(size, y + (random() - 0.5) * 4);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = "rgba(255,255,255,0.28)";
+    ctx.beginPath();
+    ctx.ellipse(size * 0.34, size * 0.25, size * 0.22, size * 0.12, -0.6, 0, Math.PI * 2);
+    ctx.fill();
+    addSurfaceNoise(ctx, size, random, 0.6);
+  }
+
+  function createMaterialTexture(item) {
+    const size = 256;
+    const canvas = createCanvas(size);
+    const ctx = canvas.getContext("2d");
+    const random = createRandom(hashString(item.id + item.name));
+
+    if (item.category === "wood" || item.category === "shape") {
+      drawWoodTexture(ctx, item, size, random);
+    } else if (item.category === "jade") {
+      drawJadeTexture(ctx, item, size, random);
+    } else if (item.category === "stone") {
+      drawStoneTexture(ctx, item, size, random);
+    } else {
+      drawMetalTexture(ctx, item, size, random);
+    }
+
+    return canvas.toDataURL("image/png");
+  }
+
+  function createBoardTexture() {
+    const size = 1024;
+    const canvas = createCanvas(size);
+    const ctx = canvas.getContext("2d");
+    const random = createRandom(985271);
+
+    const base = ctx.createRadialGradient(size * 0.38, size * 0.3, 0, size * 0.5, size * 0.5, size * 0.75);
+    base.addColorStop(0, "#8b6747");
+    base.addColorStop(0.42, "#50372a");
+    base.addColorStop(1, "#17110e");
+    ctx.fillStyle = base;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.save();
+    ctx.lineCap = "round";
+    for (let line = 0; line < 260; line += 1) {
+      const y = random() * size;
+      const amplitude = 10 + random() * 42;
+      const phase = random() * Math.PI * 2;
+      ctx.beginPath();
+      for (let x = -30; x <= size + 30; x += 8) {
+        const pointY = y + Math.sin(x / (40 + random() * 80) + phase) * amplitude;
+        if (x === -30) {
+          ctx.moveTo(x, pointY);
+        } else {
+          ctx.lineTo(x, pointY);
+        }
+      }
+      ctx.strokeStyle = random() > 0.48 ? "rgba(255,229,190,0.028)" : "rgba(25,12,8,0.075)";
+      ctx.lineWidth = 1 + random() * 3;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    for (let knot = 0; knot < 7; knot += 1) {
+      const x = size * (0.12 + random() * 0.76);
+      const y = size * (0.12 + random() * 0.76);
+      for (let ring = 0; ring < 7; ring += 1) {
+        ctx.strokeStyle = `rgba(20,10,7,${0.045 + ring * 0.008})`;
+        ctx.lineWidth = 2 + ring * 0.8;
+        ctx.beginPath();
+        ctx.ellipse(x, y, 10 + ring * 8, 4 + ring * 4, random() * Math.PI, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    const vignette = ctx.createRadialGradient(size * 0.42, size * 0.38, size * 0.08, size * 0.5, size * 0.5, size * 0.72);
+    vignette.addColorStop(0, "rgba(255,238,205,0.16)");
+    vignette.addColorStop(0.38, "rgba(0,0,0,0)");
+    vignette.addColorStop(1, "rgba(0,0,0,0.56)");
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, size, size);
+    addSurfaceNoise(ctx, size, random, 0.34);
+    return canvas.toDataURL("image/jpeg", 0.92);
+  }
+
+  function initMaterials(materials) {
+    materials.forEach((item) => {
+      try {
+        if (!textureCache[item.id]) {
+          textureCache[item.id] = createMaterialTexture(item);
+        }
+        item.textureUrl = textureCache[item.id];
+        item.textureCss = `background-image:url('${item.textureUrl}');background-size:110% 110%;background-position:center;background-repeat:no-repeat;`;
+      } catch (error) {
+        console.warn("material texture failed", item.id, error);
+        item.textureError = String(error);
+        item.textureCss = item.backgroundStyle;
+      }
+    });
+  }
+
+  function applyBoardTexture() {
+    const url = createBoardTexture();
+    document.documentElement.style.setProperty("--board-texture", `url("${url}")`);
+  }
+
+  window.MushiguangTextures = {
+    initMaterials,
+    applyBoardTexture
+  };
+})();
+
+(function () {
+  "use strict";
+
+  const materialModule = window.module && window.module.exports;
+  if (!materialModule || !Array.isArray(materialModule.MATERIALS)) {
+    document.getElementById("app").innerHTML =
+      '<div class="page"><div class="empty-state"><h2>材料数据加载失败</h1><p>请确认网页版与木拾光-miniapp文件夹位于同一级目录。</p></div></div>';
+    return;
+  }
+
+  const MATERIALS = materialModule.MATERIALS;
+  const MATERIAL_MAP = MATERIALS.reduce((map, item) => {
+    map[item.id] = item;
+    return map;
+  }, {});
+
+  if (window.MushiguangTextures) {
+    window.MushiguangTextures.initMaterials(MATERIALS);
+    window.MushiguangTextures.applyBoardTexture();
+  }
+
+  const CATEGORIES = [
+    { id: "wood", name: "木材" },
+    { id: "jade", name: "玉珠" },
+    { id: "stone", name: "矿珠" },
+    { id: "metal", name: "配饰" },
+    { id: "shape", name: "随形" }
+  ];
+
+  const TEMPLATES = [
+    {
+      id: "galaxy",
+      name: "星河木语",
+      subtitle: "银曜石与晴水玉，克制又有光",
+      tag: "daily",
+      beadSizes: [12, 10, 12, 8, 12, 10, 12, 8, 12, 10, 12, 8, 12, 10, 12, 8],
+      materialIds: [
+        "silverObsidian", "silverObsidian", "silverObsidian", "silverObsidian",
+        "silverObsidian", "silverObsidian", "silverObsidian", "silverObsidian",
+        "silverObsidian", "silverObsidian", "silverObsidian", "icyJade",
+        "blackObsidian", "blackObsidian", "blackObsidian", "metalSilver"
+      ]
+    },
+    {
+      id: "warmSandalwood",
+      name: "暖檀初见",
+      subtitle: "檀木暖调，适合送给重要的人",
+      tag: "gift",
+      beadSizes: [12, 10, 12, 10, 12, 10, 12, 10, 12, 10, 12, 10, 12, 10, 12, 10],
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "oldSandalwood",
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "oldSandalwood",
+        "bloodSandalwood", "bloodSandalwood", "bloodSandalwood", "bloodSandalwood",
+        "bloodSandalwood", "bloodSandalwood", "goldenCamphor", "metalGold"
+      ]
+    },
+    {
+      id: "jadeMist",
+      name: "青玉生烟",
+      subtitle: "碧玉与青玉交叠，清爽耐看",
+      tag: "daily",
+      beadSizes: [8, 8, 10, 8, 8, 10, 8, 8, 10, 8, 8, 10, 8, 8, 10, 8],
+      materialIds: [
+        "greenJade", "greenJade", "greenJade", "greenJade",
+        "greenJade", "greenJade", "greenJade", "greenJade",
+        "celadonJade", "celadonJade", "celadonJade", "celadonJade",
+        "celadonJade", "whiteJade", "whiteJade", "metalSilver"
+      ]
+    },
+    {
+      id: "mixedGradual",
+      name: "大小珠渐变",
+      subtitle: "14、12、10、8mm 四档渐变，层次最明显",
+      tag: "mixed",
+      beadSizes: [14, 12, 10, 8, 10, 12, 14, 12, 10, 8, 10, 12, 14, 10, 8, 12],
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "goldenCamphor", "whiteJade",
+        "greenJade", "goldenCamphor", "bloodSandalwood", "goldenCamphor",
+        "whiteJade", "celadonJade", "goldenCamphor", "oldSandalwood",
+        "bloodSandalwood", "sugarJade", "whiteJade", "metalGold"
+      ]
+    },
+    {
+      id: "alternatingSize",
+      name: "大小珠交替",
+      subtitle: "主珠与小珠间隔，节奏清晰",
+      tag: "mixed",
+      beadSizes: [12, 8, 12, 8, 12, 8, 12, 8, 12, 8, 12, 8, 12, 8, 12, 8],
+      materialIds: [
+        "blackObsidian", "whiteJade", "silverObsidian", "goldenObsidian",
+        "blackObsidian", "greenJade", "silverObsidian", "whiteJade",
+        "blackObsidian", "celadonJade", "silverObsidian", "goldenObsidian",
+        "blackObsidian", "whiteJade", "metalSilver", "greenJade"
+      ]
+    },
+    {
+      id: "focusGift",
+      name: "一颗主珠",
+      subtitle: "小珠铺垫、一颗 14mm 玉珠作为视觉中心",
+      tag: "gift",
+      beadSizes: [8, 8, 8, 10, 8, 14, 8, 10, 8, 8, 10, 8, 8, 10, 8, 8],
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "goldenCamphor", "oldSandalwood",
+        "sugarJade", "icyJade", "goldenCamphor", "oldSandalwood",
+        "bloodSandalwood", "goldenCamphor", "oldSandalwood", "sugarJade",
+        "goldenCamphor", "whiteJade", "metalGold", "oldSandalwood"
+      ]
+    }
+  ];
+
+  const PACKAGES = [
+    {
+      id: "studentDaily",
+      name: "学生日常套餐",
+      audience: "学生党",
+      description: "轻预算、耐看百搭，适合每天都戴",
+      productType: "bracelet",
+      beadSize: 10,
+      materialIds: [
+        "blackObsidian", "blackObsidian", "blackObsidian", "blackObsidian",
+        "whiteJade", "whiteJade", "whiteJade", "silverObsidian",
+        "silverObsidian", "silverObsidian", "silverObsidian", "silverObsidian",
+        "silverObsidian", "goldenObsidian", "goldenObsidian", "metalSilver",
+        "blackObsidian", "whiteJade"
+      ]
+    },
+    {
+      id: "coupleMemory",
+      name: "情侣纪念套餐",
+      audience: "情侣",
+      description: "暖檀与青玉组合，适合纪念日成对定制",
+      productType: "bracelet",
+      beadSize: 8,
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "bloodSandalwood",
+        "bloodSandalwood", "greenJade", "whiteJade", "metalGold",
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "bloodSandalwood",
+        "bloodSandalwood", "greenJade", "whiteJade", "metalGold"
+      ]
+    },
+    {
+      id: "graduationGift",
+      name: "毕业礼物套餐",
+      audience: "毕业生",
+      description: "木色与晴水玉组合，可加日期或姓名",
+      productType: "bracelet",
+      beadSize: 10,
+      materialIds: [
+        "burmeseRosewood", "burmeseRosewood", "burmeseRosewood", "burmeseRosewood",
+        "icyJade", "goldenCamphor", "goldenCamphor", "metalGold",
+        "burmeseRosewood", "burmeseRosewood", "burmeseRosewood", "burmeseRosewood",
+        "icyJade", "goldenCamphor", "goldenCamphor", "metalGold"
+      ]
+    },
+    {
+      id: "commuterNecklace",
+      name: "通勤长项链套餐",
+      audience: "年轻职场人",
+      description: "低饱和灰黑配色，适合衬衫和通勤穿搭",
+      productType: "necklace",
+      beadSize: 8,
+      materialIds: [
+        "blackObsidian", "blackObsidian", "silverObsidian", "silverObsidian",
+        "iceObsidian", "inkJade", "inkJade", "metalSilver",
+        "blackObsidian", "blackObsidian", "silverObsidian", "silverObsidian",
+        "iceObsidian", "inkJade", "inkJade", "metalSilver"
+      ]
+    },
+    {
+      id: "parentChild",
+      name: "亲子手作套餐",
+      audience: "家庭用户",
+      description: "暖色木珠配小玉珠，适合亲子共同挑选",
+      productType: "bracelet",
+      beadSize: 12,
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "sugarJade",
+        "whiteJade", "goldenCamphor", "goldenCamphor", "metalGold",
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "sugarJade",
+        "whiteJade", "goldenCamphor", "goldenCamphor", "metalGold"
+      ]
+    },
+    {
+      id: "corporateGift",
+      name: "团体礼品套餐",
+      audience: "企业与社团",
+      description: "低饱和木玉配色，支持统一包装和分批交付",
+      productType: "necklace",
+      beadSize: 10,
+      materialIds: [
+        "broadleafRosewood", "broadleafRosewood", "celadonJade", "celadonJade",
+        "whiteJade", "metalSilver", "broadleafRosewood", "broadleafRosewood",
+        "celadonJade", "celadonJade", "whiteJade", "metalSilver"
+      ]
+    }
+  ];
+
+  const STORAGE_KEYS = {
+    designs: "mushiguang_web_designs",
+    orders: "mushiguang_web_orders",
+    community: "mushiguang_web_community",
+    service: "mushiguang_web_service"
+  };
+
+  const PRODUCT_TYPES = [
+    { id: "bracelet", name: "手串", unit: "颗", note: "按手腕周长搭配，日常佩戴更合适" },
+    { id: "necklace", name: "项链", unit: "颗", note: "长串设计，适合叠戴或作为礼物" },
+    { id: "ring", name: "戒指", unit: "颗", note: "小圈珠戒，建议用 6—10mm 珠径" }
+  ];
+
+  const BEAD_SIZES = [6, 8, 10, 12, 14];
+
+  const TARGET_COUNTS = {
+    bracelet: { 6: 30, 8: 23, 10: 18, 12: 16, 14: 14 },
+    necklace: { 6: 48, 8: 36, 10: 30, 12: 24, 14: 20 },
+    ring: { 6: 22, 8: 18, 10: 14, 12: 12, 14: 10 }
+  };
+
+  const MAX_COUNTS = {
+    bracelet: 32,
+    necklace: 70,
+    ring: 24
+  };
+
+  const STRING_MATERIALS = [
+    { id: "elastic", name: "高弹线", price: 3, color: "rgba(255,242,216,0.5)", width: 1.5 },
+    { id: "braided", name: "编织线", price: 6, color: "rgba(226,205,169,0.62)", width: 2.2 },
+    { id: "nylon", name: "尼龙线", price: 4, color: "rgba(229,237,232,0.68)", width: 1.8 },
+    { id: "steel", name: "钢丝线", price: 12, color: "rgba(220,225,225,0.9)", width: 1.2 },
+    { id: "leather", name: "皮绳", price: 8, color: "rgba(101,66,42,0.9)", width: 3 }
+  ];
+
+  const PACKAGE_TIERS = [
+    {
+      id: "light",
+      name: "轻享款",
+      tag: "入门体验",
+      description: "保留核心材质，适合第一次尝试木质串珠",
+      lineMaterial: "elastic",
+      extraContent: ["简装盒", "养护卡", "基础弹力线"]
+    },
+    {
+      id: "recommended",
+      name: "推荐款",
+      tag: "人气选择",
+      description: "材质层次更丰富，适合送礼或长期佩戴",
+      lineMaterial: "braided",
+      extraContent: ["品牌礼盒", "赠言卡", "升级连接线", "个性珠序"]
+    },
+    {
+      id: "premium",
+      name: "臻选款",
+      tag: "高阶礼赠",
+      description: "增加焦点玉珠和金属配饰，包装与售后更完整",
+      lineMaterial: "nylon",
+      extraContent: ["高级礼盒", "材质信息卡", "定制刻字", "售后补珠一次"]
+    }
+  ];
+
+  const PACKAGE_UPGRADE_POOL = {
+    studentDaily: ["goldenObsidian", "whiteJade", "metalSilver"],
+    coupleMemory: ["icyJade", "greenJade", "metalGold"],
+    graduationGift: ["icyJade", "goldenCamphor", "metalGold"],
+    commuterNecklace: ["blueTigerEye", "iceObsidian", "metalSilver"],
+    parentChild: ["sugarJade", "greenJade", "metalGold"],
+    corporateGift: ["inkJade", "whiteJade", "metalSilver"]
+  };
+
+  const PACKAGE_DETAILS = {
+    studentDaily: {
+      headline: "轻预算日常手串",
+      summary: "以耐看、耐用、好搭配为优先，减少高溢价材质，把预算放在真实木色和舒适佩戴上。",
+      benefits: ["适合每天佩戴", "颜色不挑衣服", "可加姓名或宿舍号", "单串即可下单"],
+      tierContent: {
+        light: ["基础木珠与矿珠", "简装盒", "普通弹力线"],
+        recommended: ["增加银曜石与白玉", "品牌礼盒", "赠言卡"],
+        premium: ["增加金曜石焦点珠", "定制刻字", "备用线与补珠服务"]
+      }
+    },
+    coupleMemory: {
+      headline: "情侣双串纪念方案",
+      summary: "提供“同款镜像”和“互补配色”两种搭配方向，可分别选择两个人的手围。",
+      benefits: ["两串可不同尺寸", "支持姓名或日期", "可做同色或互补色", "礼盒可分装"],
+      tierContent: {
+        light: ["暖木基础双串", "两枚简装袋", "普通弹力线"],
+        recommended: ["檀木与青玉互补配色", "双人礼盒", "两张赠言卡"],
+        premium: ["晴水玉焦点珠", "双人刻字", "高级礼盒与保养布"]
+      }
+    },
+    graduationGift: {
+      headline: "毕业纪念与赠礼方案",
+      summary: "围绕校园、姓名、毕业年份和纪念日期设计，适合个人留念或同学互赠。",
+      benefits: ["支持毕业年份刻字", "可做校园色系", "适合批量同学礼", "可附毕业祝福卡"],
+      tierContent: {
+        light: ["花梨木基础款", "纪念卡", "简装盒"],
+        recommended: ["加入晴水玉与金色隔珠", "毕业礼盒", "姓名或日期刻字"],
+        premium: ["升级玉珠焦点位", "高级礼盒", "仿旧校徽贴纸与定制内页"]
+      }
+    },
+    commuterNecklace: {
+      headline: "通勤长项链穿搭方案",
+      summary: "低饱和灰黑与玉色为主，提供40cm、45cm、50cm三种参考长度，适合衬衫、针织和西装。",
+      benefits: ["三种项链长度", "不易过时", "适合男女通勤", "可拆分成短链与手串"],
+      tierContent: {
+        light: ["黑曜石与银曜石", "简装盒", "高弹线"],
+        recommended: ["加入冰曜石与墨玉", "品牌礼盒", "编织线"],
+        premium: ["蓝虎眼焦点珠", "可拆式钢丝连接", "高级收纳袋"]
+      }
+    },
+    parentChild: {
+      headline: "一大一小亲子优惠方案",
+      summary: "同时定制一条成人手串和一条儿童手串，默认享受组合折扣，儿童款以安全圆珠和小珠径为主。",
+      benefits: ["成人款+儿童款", "组合价约八二折", "儿童款默认6—10mm", "两人手围分别填写"],
+      tierContent: {
+        light: ["暖木亲子基础双串", "两只简装袋", "基础弹力线"],
+        recommended: ["糖玉与白玉亲子配色", "双人礼盒", "两串刻字"],
+        premium: ["绿玉焦点珠", "高级亲子礼盒", "儿童款备用线"]
+      }
+    },
+    corporateGift: {
+      headline: "企业团体礼赠方案",
+      summary: "数量、交期、包装、品牌文字、开票与分批交付需要提前和商家协商，确认后再安排打样和生产。",
+      benefits: ["支持统一主题", "可分批交付", "可定制包装卡", "可协商开票与合同"],
+      tierContent: {
+        light: ["统一基础珠序", "团体简装盒", "基础弹力线"],
+        recommended: ["定制企业配色", "品牌礼盒和卡片", "统一包装"],
+        premium: ["专属材质组合", "高级礼盒与手提袋", "分批交付与专属客服"]
+      }
+    }
+  };
+
+  const COLOR_PALETTES = [
+    {
+      id: "lowSaturation",
+      name: "低饱和通勤",
+      ratio: "70% 黑灰 + 20% 银灰 + 10% 白玉",
+      description: "颜色安静，适合衬衫、针织和日常通勤",
+      lineMaterial: "steel",
+      materialIds: [
+        "blackObsidian", "blackObsidian", "blackObsidian", "blackObsidian",
+        "blackObsidian", "blackObsidian", "silverObsidian", "silverObsidian",
+        "silverObsidian", "iceObsidian", "inkJade", "whiteJade",
+        "blackObsidian", "blackObsidian", "metalSilver", "silverObsidian"
+      ]
+    },
+    {
+      id: "warmWood",
+      name: "暖木礼物",
+      ratio: "60% 暖木 + 25% 深木 + 15% 金色",
+      description: "暖色层次集中，适合送礼和秋冬穿搭",
+      lineMaterial: "braided",
+      materialIds: [
+        "oldSandalwood", "oldSandalwood", "oldSandalwood", "oldSandalwood",
+        "oldSandalwood", "goldenCamphor", "goldenCamphor", "bloodSandalwood",
+        "bloodSandalwood", "bloodSandalwood", "oldSandalwood", "sugarJade",
+        "whiteJade", "metalGold", "oldSandalwood", "goldenCamphor"
+      ]
+    },
+    {
+      id: "clearJade",
+      name: "清透玉色",
+      ratio: "55% 青玉 + 25% 白玉 + 20% 晴水玉",
+      description: "清爽、轻盈，适合夏天和浅色衣服",
+      lineMaterial: "nylon",
+      materialIds: [
+        "celadonJade", "celadonJade", "celadonJade", "greenJade",
+        "greenJade", "whiteJade", "whiteJade", "icyJade",
+        "celadonJade", "celadonJade", "whiteJade", "greenJade",
+        "metalSilver", "celadonJade", "whiteJade", "icyJade"
+      ]
+    }
+  ];
+
+  const PRICE_FACTORS = {
+    wood: 0.42,
+    jade: 0.36,
+    stone: 0.3,
+    metal: 0.55,
+    shape: 0.4
+  };
+
+  const state = {
+    view: "design",
+    inspirationCategory: "all",
+    category: "wood",
+    knowledgeCategory: "wood",
+    productType: "bracelet",
+    beadSize: 12,
+    beadIds: TEMPLATES[0].materialIds.slice(),
+    beadSizes:
+      TEMPLATES[0].beadSizes?.slice() ||
+      TEMPLATES[0].materialIds.map(() => 12),
+    lineMaterial: "elastic",
+    designName: TEMPLATES[0].name,
+    selectedMaterialId: null,
+    detailMaterialId: null,
+    checkout: null,
+    designs: readStore(STORAGE_KEYS.designs, []),
+    orders: readStore(STORAGE_KEYS.orders, []),
+    communityPosts: readStore(STORAGE_KEYS.community, createSeedPosts()),
+    publishDraft: null,
+    selectedPackageId: null,
+    selectedTierId: "recommended",
+    packageDetail: {
+      adultWrist: "17",
+      childWrist: "13",
+      parentTheme: "same",
+      corporateNote: "",
+      partnerWrist: "17",
+      coupleTheme: "same",
+      graduationText: "",
+      graduationScene: "个人纪念",
+      commuterLength: "45",
+      commuterScene: "日常通勤",
+      studentScene: "上课日常",
+      corporateQuantity: "20—50份"
+    },
+    serviceForm: {
+      name: "",
+      phone: "",
+      type: "套餐咨询",
+      message: ""
+    },
+    serviceInquiries: readStore(STORAGE_KEYS.service, [])
+  };
+
+  const app = document.getElementById("app");
+  const sheet = document.getElementById("sheet");
+  const toastElement = document.getElementById("toast");
+  let toastTimer = null;
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function readStore(key, fallback) {
+    try {
+      const raw = window.localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function writeStore(key, value) {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      // 文件模式下如果浏览器禁用本地存储，页面仍可继续使用。
+    }
+  }
+
+  function createSeedPosts() {
+    return [
+      {
+        id: "seed-star",
+        designer: "小满",
+        note: "把晴水玉放在正中间，整体就不会太沉，朋友看到都问链接。",
+        beadIds: TEMPLATES[0].materialIds.slice(),
+        productType: "bracelet",
+        beadSize: 12,
+        likes: 36,
+        liked: false,
+        createdAt: Date.now() - 1000 * 60 * 48
+      },
+      {
+        id: "seed-jade",
+        designer: "木木同学",
+        note: "青玉和碧玉渐变的项链，配白色衬衫特别干净。",
+        beadIds: PACKAGES.find((item) => item.id === "commuterNecklace").materialIds.slice(),
+        productType: "necklace",
+        beadSize: 8,
+        likes: 28,
+        liked: false,
+        createdAt: Date.now() - 1000 * 60 * 180
+      },
+      {
+        id: "seed-warm",
+        designer: "阿森",
+        note: "暖檀搭配小面积金色，适合作为毕业礼物。",
+        beadIds: PACKAGES.find((item) => item.id === "graduationGift").materialIds.slice(),
+        productType: "bracelet",
+        beadSize: 10,
+        likes: 19,
+        liked: false,
+        createdAt: Date.now() - 1000 * 60 * 420
+      }
+    ];
+  }
+
+  function showToast(message) {
+    toastElement.textContent = message;
+    toastElement.classList.add("show");
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      toastElement.classList.remove("show");
+    }, 1800);
+  }
+
+  function getMaterial(id) {
+    return MATERIAL_MAP[id];
+  }
+
+  function getMaterialStyle(material) {
+    return material.textureCss || material.backgroundStyle || "";
+  }
+
+  function getEffectivePrice(material, beadSize) {
+    const size = beadSize || state.beadSize;
+    const factor = PRICE_FACTORS[material.category] || 0.42;
+    const sizeFactor = size / (material.size || 12);
+    return Math.max(1, Math.round(material.price * factor * sizeFactor));
+  }
+
+  function getTargetCount(productType, beadSize) {
+    const type = productType || state.productType;
+    const size = beadSize || state.beadSize;
+    return TARGET_COUNTS[type][size] || TARGET_COUNTS.bracelet[12];
+  }
+
+  function getMaxCount(productType) {
+    return MAX_COUNTS[productType || state.productType] || MAX_COUNTS.bracelet;
+  }
+
+  function getProductName(productType) {
+    const product = PRODUCT_TYPES.find((item) => item.id === (productType || state.productType));
+    return product ? product.name : "手串";
+  }
+
+  function createSizeArray(length, size) {
+    return Array.from({ length }, () => size);
+  }
+
+  function getLineMaterial(id) {
+    return STRING_MATERIALS.find((item) => item.id === id) || STRING_MATERIALS[0];
+  }
+
+  function getPackageTier(tierId) {
+    return PACKAGE_TIERS.find((item) => item.id === tierId) || PACKAGE_TIERS[1];
+  }
+
+  function buildPackageTierBeadIds(packageItem, tierId) {
+    const tier = getPackageTier(tierId);
+    const beadSize =
+      tier.id === "light"
+        ? Math.max(6, packageItem.beadSize - 2)
+        : tier.id === "premium"
+          ? Math.min(14, packageItem.beadSize + 2)
+          : packageItem.beadSize;
+    const target = getTargetCount(packageItem.productType, beadSize);
+    const baseIds = Array.from(
+      { length: target },
+      (_, index) => packageItem.materialIds[index % packageItem.materialIds.length]
+    );
+
+    if (tier.id === "light") {
+      return { ids: baseIds, beadSize, tier };
+    }
+
+    const pool = PACKAGE_UPGRADE_POOL[packageItem.id] || ["whiteJade", "metalSilver"];
+    const replaceEvery = tier.id === "premium" ? 5 : 9;
+    const upgradedIds = baseIds.map((id, index) =>
+      index > 0 && index % replaceEvery === 0 ? pool[index % pool.length] : id
+    );
+    return { ids: upgradedIds, beadSize, tier };
+  }
+
+  function getParentChildChildIds(adultIds, theme, childSize) {
+    if (theme === "warm") {
+      return adultIds.map((id, index) => {
+        if (index % 4 === 0) {
+          return "sugarJade";
+        }
+        if (index % 4 === 1) {
+          return "whiteJade";
+        }
+        return childSize <= 8 ? "goldenObsidian" : "oldSandalwood";
+      });
+    }
+
+    if (theme === "natural") {
+      return adultIds.map((id, index) => {
+        if (index % 5 === 0) {
+          return "greenJade";
+        }
+        if (index % 5 === 1) {
+          return "celadonJade";
+        }
+        return index % 3 === 0 ? "oldSandalwood" : "goldenCamphor";
+      });
+    }
+
+    return adultIds.map((id, index) => (index % 7 === 0 ? "whiteJade" : id));
+  }
+
+  function getCoupleSecondIds(firstIds, theme) {
+    if (theme === "contrast") {
+      return firstIds.map((id, index) => {
+        if (index % 5 === 0) {
+          return "icyJade";
+        }
+        if (index % 5 === 1) {
+          return "inkJade";
+        }
+        return index % 2 === 0 ? "celadonJade" : "silverObsidian";
+      });
+    }
+
+    if (theme === "mirror") {
+      return firstIds.slice().reverse();
+    }
+
+    return firstIds.map((id, index) => (index % 7 === 0 ? "metalGold" : id));
+  }
+
+  function getPackageTierData(packageItem, tierId) {
+    const tierData = buildPackageTierBeadIds(packageItem, tierId);
+    const summary = calculateDesign(
+      tierData.ids,
+      packageItem.productType,
+      tierData.beadSize,
+      createSizeArray(tierData.ids.length, tierData.beadSize),
+      tierData.tier.lineMaterial
+    );
+    const detail = PACKAGE_DETAILS[packageItem.id];
+    return {
+      ...tierData,
+      summary,
+      content: [
+        ...(detail.tierContent[tierData.tier.id] || []),
+        ...tierData.tier.extraContent
+      ]
+    };
+  }
+
+  function getColorAdvice(beadIds) {
+    const items = beadIds.map(getMaterial).filter(Boolean);
+    if (!items.length) {
+      return {
+        title: "从深色主珠开始",
+        ratio: "建议 60% 主色 + 25% 过渡色 + 15% 亮点珠",
+        text: "先选择木色或深色矿珠作为主色，再加入白玉或银曜石提亮。"
+      };
+    }
+
+    const counts = items.reduce((result, item) => {
+      result[item.category] = (result[item.category] || 0) + 1;
+      return result;
+    }, {});
+    const total = items.length;
+    const woodRatio = (counts.wood || 0) / total;
+    const jadeRatio = (counts.jade || 0) / total;
+    const stoneRatio = (counts.stone || 0) / total;
+    const categoryCount = Object.keys(counts).length;
+
+    if (woodRatio >= 0.68) {
+      return {
+        title: "暖木主调",
+        ratio: "当前木色偏多，建议加入 1—3 颗白玉或金属隔珠",
+        text: "在视觉正中和收尾位置放少量浅色珠，可以避免整串颜色过重。"
+      };
+    }
+    if (jadeRatio >= 0.5) {
+      return {
+        title: "清透玉色",
+        ratio: "浅玉色为主，建议用深木色或墨玉压住重心",
+        text: "两侧加入深色珠会让玉色更亮，也更适合日常佩戴。"
+      };
+    }
+    if (stoneRatio >= 0.55) {
+      return {
+        title: "冷色矿珠",
+        ratio: "黑灰矿珠偏多，建议加入暖木或金色隔珠",
+        text: "暖色点缀可以降低冷硬感，情侣或礼物款尤其适合。"
+      };
+    }
+    if (categoryCount >= 4) {
+      return {
+        title: "材质层次丰富",
+        ratio: "颜色和材质较多，建议保留一个明确主色",
+        text: "把主色控制在 60% 左右，其他颜色只做过渡和焦点。"
+      };
+    }
+    return {
+      title: "配色相对均衡",
+      ratio: "主色 60% + 过渡色 25% + 亮点色 15%",
+      text: "目前层次完整，可把最有特色的一颗珠子放在上方视觉中心。"
+    };
+  }
+
+  function getMaterialDetail(material) {
+    const categoryDetails = {
+      wood: {
+        feature:
+          "木质会随树种、密度和切面方向呈现不同纹理。颜色与油润感是视觉特征，密度和稳定性会影响佩戴后的手感。",
+        style: "适合自然、通勤、东方和礼物类搭配，也常作为整串的主色。",
+        pairing: "搭配白色玉珠可以提亮；加入银曜石或墨玉会显得更沉稳；少量金色隔珠适合做视觉焦点。",
+        care: "避免长时间暴晒、泡水和剧烈温差。日常用干燥软布轻擦，不随意涂抹来路不明的油或蜡。",
+        caution: "商品名必须与规范树种对应，并保留合法来源证明。不要仅凭颜色或商家俗称判断树种。"
+      },
+      jade: {
+        feature:
+          "玉珠的视觉重点通常来自透度、颜色、细度和内部结构。不同批次之间可能存在云雾、棉絮或颜色变化。",
+        style: "适合清透、温润、礼物和轻正式风格，单独成串或作为焦点珠都很合适。",
+        pairing: "与暖木搭配可降低冷感，与黑灰矿珠搭配会更现代，与白色或银色配件搭配则更清爽。",
+        care: "避免碰撞、强酸碱和长时间高温。佩戴后用软布擦拭，存放时与硬度较高的材料分开。",
+        caution: "玉石名称应以正规检测结论和实际商品信息为准，避免把外观相似的材质混称。"
+      },
+      stone: {
+        feature:
+          "矿珠通常具有金属光、猫眼、彩虹光或细密闪光。光线角度变化时，纹理和亮度会明显变化。",
+        style: "适合冷色、极简、通勤和个性搭配，也常与木珠混合使用。",
+        pairing: "银曜石适合作为木珠的冷色过渡；黑曜石适合压住整体重心；金曜石适合替换少量暖色焦点。",
+        care: "避免重摔和长时间摩擦。表面有镀层或特殊处理的矿珠，不建议接触酒精、香水或清洁剂。",
+        caution: "天然矿珠和人工处理材料的名称、处理方式应在商品页中明确说明。"
+      },
+      metal: {
+        feature:
+          "金属配件主要影响整串的节奏、亮度和结构强度，常作为间隔珠、收尾件或连接件。",
+        style: "适合现代、极简、情侣和通勤风格，少量使用即可形成明确亮点。",
+        pairing: "银色适合冷色矿珠和玉珠，金色适合暖木和糖玉，钛钢件适合需要更稳固连接的设计。",
+        care: "避免与硬物刮擦，佩戴后擦去汗渍并保持干燥。不同金属不应长期混放。",
+        caution: "需确认具体金属材质、镀层和皮肤接触适用性，敏感肤质应谨慎选择。"
+      },
+      shape: {
+        feature:
+          "异形珠通过切面和非圆形态改变光线反射，视觉上更有手工感和结构感。",
+        style: "适合个性、复古和混材设计，建议与圆珠交替使用。",
+        pairing: "方珠或六棱珠放在主珠两侧能增加层次，搭配小尺寸圆珠可以降低生硬感。",
+        care: "注意棱角和孔道位置，避免长期摩擦后出现崩边。穿线时应检查孔口是否圆润。",
+        caution: "异形加工会增加尺寸误差和孔道风险，制作前应以实物公差为准。"
+      }
+    };
+    const profile = categoryDetails[material.category] || categoryDetails.wood;
+    const minPrice = getEffectivePrice(material, 6);
+    const maxPrice = getEffectivePrice(material, 14);
+    return {
+      ...profile,
+      priceRange: `¥${minPrice}—${maxPrice}/颗`,
+      specific: material.note,
+      legal: material.legalTip || profile.caution
+    };
+  }
+
+  function resizeBeadIdsForProduct(productType, beadSize, preserveSizes) {
+    const source = state.beadIds.length ? state.beadIds.slice() : TEMPLATES[0].materialIds.slice();
+    const sourceSizes =
+      preserveSizes && state.beadSizes.length
+        ? state.beadSizes.slice()
+        : createSizeArray(source.length, beadSize);
+    const target = getTargetCount(productType, beadSize);
+    state.beadIds = Array.from({ length: target }, (_, index) => source[index % source.length]);
+    state.beadSizes = Array.from(
+      { length: target },
+      (_, index) => sourceSizes[index % sourceSizes.length] || beadSize
+    );
+  }
+
+  function buildBracelet(beadIds, productType, beadSize, beadSizes) {
+    const items = beadIds.map(getMaterial).filter(Boolean);
+    const count = items.length;
+    const type = productType || state.productType;
+    const size = beadSize || state.beadSize;
+    const sizes = beadSizes || createSizeArray(items.length, size);
+    const isNecklace = type === "necklace";
+    const isRing = type === "ring";
+
+    return items.map((item, index) => {
+      const angle = (-90 + (360 * index) / Math.max(count, 1)) * (Math.PI / 180);
+      const radiusX = isRing ? 23 : isNecklace ? (count > 48 ? 45 : 43) : count > 24 ? 42 : 39;
+      const radiusY = isRing ? 21 : isNecklace ? (count > 48 ? 41 : 39) : count > 24 ? 37 : 34;
+      const left = 50 + radiusX * Math.cos(angle);
+      const top = (isRing ? 50 : 51) + radiusY * Math.sin(angle);
+      const itemSize = sizes[index] || size;
+      const visualSize =
+        itemSize === 6 ? 5.4 : itemSize === 8 ? 6.8 : itemSize === 10 ? 8.4 : itemSize === 12 ? 10.2 : 11.8;
+      const shapeClass = item.shape === "square" ? "square" : item.shape === "hex" ? "hex" : "";
+
+      return {
+        ...item,
+        uid: `${item.id}-${index}`,
+        index,
+        shapeClass,
+        style: `left:${left.toFixed(2)}%;top:${top.toFixed(2)}%;width:${visualSize}%;height:${visualSize}%;margin-left:-${visualSize / 2}%;margin-top:-${visualSize / 2}%;${getMaterialStyle(item)}`
+      };
+    });
+  }
+
+  function calculateDesign(beadIds, productType, beadSize, beadSizes, lineMaterial) {
+    const items = beadIds.map(getMaterial).filter(Boolean);
+    const type = productType || state.productType;
+    const size = beadSize || state.beadSize;
+    const sizes = beadSizes || createSizeArray(items.length, size);
+    const line = getLineMaterial(lineMaterial || state.lineMaterial);
+    const materialTotal = items.reduce(
+      (sum, item, index) => sum + getEffectivePrice(item, sizes[index] || size),
+      0
+    );
+    const productDiscount = type === "necklace" ? 0.72 : type === "ring" ? 0.86 : 1;
+    const totalPrice = Math.max(19, Math.round(materialTotal * productDiscount + line.price));
+    const beadLengthMm = items.reduce((sum, item, index) => sum + (sizes[index] || size), 0);
+    const connectorAllowanceMm = type === "necklace" ? (line.id === "steel" ? 180 : 150) : 0;
+    const totalMm = beadLengthMm + connectorAllowanceMm;
+    const circumference = (totalMm / 10).toFixed(1);
+    const wristMin = Math.max(12.5, Number(circumference) - 1.3).toFixed(1);
+    const wristMax = (Number(circumference) + 0.8).toFixed(1);
+    const ringDiameter = (circumference / Math.PI).toFixed(1);
+    const target = getTargetCount(type, size);
+    const minimumCheckoutCount =
+      type === "ring" ? 5 : type === "necklace" ? 12 : 8;
+    const fit =
+      type === "ring"
+        ? { label: "适合指围", range: `${ringDiameter}cm左右` }
+        : type === "necklace"
+          ? { label: "适合颈围", range: `${wristMin}-${wristMax}cm` }
+          : { label: "建议手围", range: `${wristMin}-${wristMax}cm` };
+
+    return {
+      productType: type,
+      productName: getProductName(type),
+      beadSize: size,
+      lineMaterial: line,
+      linePrice: line.price,
+      target,
+      count: items.length,
+      totalPrice,
+      circumference,
+      wristRange: fit.range,
+      fitLabel: fit.label,
+      progress: Math.min(100, Math.round((items.length / target) * 100)),
+      minimumCheckoutCount,
+      canCheckout: items.length >= minimumCheckoutCount
+    };
+  }
+
+  function summarizeMaterials(beadIds) {
+    return beadIds.reduce((list, id) => {
+      const found = list.find((item) => item.id === id);
+      if (found) {
+        found.count += 1;
+      } else {
+        const material = getMaterial(id);
+        if (material) {
+          list.push({ id, name: material.name, count: 1, style: getMaterialStyle(material) });
+        }
+      }
+      return list;
+    }, []);
+  }
+
+  function renderBeads(beads, options) {
+    const settings = options || {};
+    return beads
+      .map(
+        (bead) =>
+          `<button class="bead ${bead.shapeClass}" style="${bead.style}" ${settings.clickable ? `data-action="remove-at" data-index="${bead.index}" title="点击移除"` : ""} aria-label="${escapeHtml(bead.name)}"></button>`
+      )
+      .join("");
+  }
+
+  function renderBoard(beads, boardClass, productType, lineMaterial) {
+    const type = productType || state.productType;
+    const line = getLineMaterial(lineMaterial || state.lineMaterial);
+    return `
+      <div class="wood-board ${boardClass || ""} product-${type}" style="--cord-color:${line.color};--cord-width:${line.width}px;">
+        <div class="board-ring"></div>
+        <div class="board-logo">MU SHI GUANG</div>
+        ${renderBeads(beads, { clickable: Boolean(boardClass && boardClass.includes("design-board")) })}
+      </div>
+    `;
+  }
+
+  function renderNavigation() {
+    const active =
+      state.view === "home"
+        ? "home"
+        : state.view === "design" || state.view === "checkout"
+          ? "design"
+          : state.view === "community"
+            ? "community"
+          : "profile";
+
+    const items = [
+      { id: "home", label: "首页", icon: "首" },
+      { id: "design", label: "设计", icon: "珠" },
+      { id: "community", label: "社区", icon: "社" },
+      { id: "profile", label: "我的", icon: "我" }
+    ];
+
+    const buttons = items
+      .map(
+        (item) => `
+          <button class="nav-button ${active === item.id ? "active" : ""}" data-action="go-tab" data-tab="${item.id}">
+            <span class="nav-icon">${item.icon}</span>
+            <span>${item.label}</span>
+          </button>
+        `
+      )
+      .join("");
+
+    return {
+      mobile: `<nav class="mobile-nav">${buttons}</nav>`,
+      desktop: `
+        <aside class="desktop-nav">
+          <div class="desktop-brand"><span class="brand-mark">木</span><span>木拾光</span></div>
+          ${buttons}
+          <div class="desktop-note">木拾光 DIY 木珠搭配<br />浏览器版 · 本地演示</div>
+        </aside>
+      `
+    };
+  }
+
+  function renderTopbar() {
+    return `
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">木</div>
+          <div>
+            <div class="brand-name">木拾光</div>
+            <div class="brand-sub">DIY WOOD &amp; JADE STUDIO</div>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button class="top-action" data-action="open-service">客服</button>
+          <button class="top-action" data-action="open-knowledge">材质图鉴</button>
+        </div>
+      </header>
+    `;
+  }
+
+  function renderHome() {
+    const heroBeads = buildBracelet(
+      TEMPLATES[0].materialIds,
+      "bracelet",
+      12,
+      createSizeArray(TEMPLATES[0].materialIds.length, 12)
+    );
+    const inspirationItems =
+      state.inspirationCategory === "all"
+        ? TEMPLATES
+        : TEMPLATES.filter((item) => item.tag === state.inspirationCategory);
+    return `
+      <main class="page">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">DIY 木珠搭配</div>
+            <h1>把喜欢的木色，<br />串成自己的光。</h1>
+            <p>每一颗珠子都能选择，实时看见成品。木珠、玉珠、矿珠自由搭配，让木材专业团队替你完成制作。</p>
+            <div class="hero-actions">
+              <button class="primary-button" data-action="start-blank">开始设计</button>
+              <button class="ghost-button" data-action="open-knowledge">认识材质</button>
+            </div>
+          </div>
+          <div class="hero-visual">${renderBoard(heroBeads, "", "bracelet", "elastic")}</div>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">怎么搭配</h2>
+          <span class="section-note">无需木工基础</span>
+        </div>
+        <section class="feature-grid">
+          <article class="feature-card surface">
+            <div class="feature-icon">01</div>
+            <h3>选材质</h3>
+            <p>木珠、玉珠、矿珠、配饰和随形珠自由切换，每种材料都有说明。</p>
+          </article>
+          <article class="feature-card surface">
+            <div class="feature-icon">02</div>
+            <h3>排珠序</h3>
+            <p>每颗珠子都能增加、减少和点击移除，实时计算价格与建议手围。</p>
+          </article>
+          <article class="feature-card surface">
+            <div class="feature-icon">03</div>
+            <h3>到手上</h3>
+            <p>确认设计后按单制作，填写手围和地址，进入订单记录。</p>
+          </article>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">按人群选套餐</h2>
+          <span class="section-note">推荐方案也可以继续自由修改</span>
+        </div>
+        <section class="package-grid">
+          ${PACKAGES.map((item) => {
+            const previewIds = Array.from(
+              { length: getTargetCount(item.productType, item.beadSize) },
+              (_, index) => item.materialIds[index % item.materialIds.length]
+            );
+            const previewSizes = createSizeArray(previewIds.length, item.beadSize);
+            const summary = calculateDesign(
+              previewIds,
+              item.productType,
+              item.beadSize,
+              previewSizes,
+              "elastic"
+            );
+            return `
+              <article class="package-card surface" data-action="open-package" data-id="${item.id}">
+                <div class="package-topline">
+                  <span class="package-audience">${escapeHtml(item.audience)}</span>
+                  <span>${summary.productName} · ${summary.beadSize}mm</span>
+                </div>
+                <div class="package-preview">${renderBoard(buildBracelet(previewIds, item.productType, item.beadSize, previewSizes), "", item.productType, "elastic")}</div>
+                <h3>${escapeHtml(item.name)}</h3>
+                <p>${escapeHtml(item.description)}</p>
+                <div class="template-meta">
+                  <span>${summary.count} 颗 · ${summary.wristRange}</span>
+                  <span class="price">¥${summary.totalPrice}</span>
+                </div>
+              </article>
+            `;
+          }).join("")}
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">今日灵感</h2>
+          <div class="inspiration-tabs">
+            ${[
+              ["all", "全部"],
+              ["daily", "日常"],
+              ["gift", "礼物"],
+              ["mixed", "混珠"]
+            ]
+              .map(
+                ([id, name]) =>
+                  `<button type="button" class="${state.inspirationCategory === id ? "active" : ""}" data-action="set-inspiration" data-id="${id}">${name}</button>`
+              )
+              .join("")}
+          </div>
+        </div>
+        <section class="template-grid">
+          ${inspirationItems.map((template) => {
+            const templateSizes =
+              template.beadSizes?.slice() ||
+              createSizeArray(template.materialIds.length, 12);
+            const summary = calculateDesign(template.materialIds, "bracelet", 12, templateSizes, "elastic");
+            return `
+              <article class="template-card surface" data-action="use-template" data-id="${template.id}">
+                <div class="template-preview">${renderBoard(buildBracelet(template.materialIds, "bracelet", 12, templateSizes), "", "bracelet", "elastic")}</div>
+                <h3>${escapeHtml(template.name)}</h3>
+                <p>${escapeHtml(template.subtitle)}</p>
+                <div class="template-meta">
+                  <span>16 颗 · ${summary.wristRange}</span>
+                  <span class="price">¥${summary.totalPrice}</span>
+                </div>
+              </article>
+            `;
+          }).join("")}
+        </section>
+      </main>
+    `;
+  }
+
+  function renderDesign() {
+    const beads = buildBracelet(state.beadIds, state.productType, state.beadSize, state.beadSizes);
+    const summary = calculateDesign(
+      state.beadIds,
+      state.productType,
+      state.beadSize,
+      state.beadSizes,
+      state.lineMaterial
+    );
+    const selected = summarizeMaterials(state.beadIds);
+    const colorAdvice = getColorAdvice(state.beadIds);
+    const materials = MATERIALS.filter((item) => item.category === state.category);
+    const discountText =
+      state.productType === "necklace"
+        ? "长串搭配优惠已计入"
+        : state.productType === "ring"
+          ? "小件组合优惠已计入"
+          : "价格已按当前珠径实时计算";
+
+    return `
+      <main class="page">
+        <div class="design-layout">
+          <section class="design-preview-panel surface">
+            <div class="design-head">
+              <div>
+                <div class="eyebrow" style="color:#8a938f;letter-spacing:0.14em;">CURRENT DESIGN</div>
+                <h1>${escapeHtml(state.designName)}</h1>
+              </div>
+              <div class="count-pill">${summary.count} / ${summary.target} 颗</div>
+            </div>
+
+            <div class="product-config">
+              <div class="config-block">
+                <span class="config-label">产品类型</span>
+                <div class="segmented">
+                  ${PRODUCT_TYPES.map(
+                    (product) =>
+                      `<button class="segment ${state.productType === product.id ? "active" : ""}" data-action="set-product" data-id="${product.id}">${product.name}</button>`
+                  ).join("")}
+                </div>
+              </div>
+              <div class="config-block">
+                <span class="config-label">珠子直径（影响后续加入）</span>
+                <div class="segmented">
+                  ${BEAD_SIZES.map(
+                    (size) =>
+                      `<button class="segment ${state.beadSize === size ? "active" : ""}" data-action="set-bead-size" data-value="${size}">${size}mm</button>`
+                  ).join("")}
+                </div>
+              </div>
+              <div class="config-block config-block--wide">
+                <span class="config-label">连接线材质</span>
+                <div class="segmented">
+                  ${STRING_MATERIALS.map(
+                    (line) =>
+                      `<button class="segment ${state.lineMaterial === line.id ? "active" : ""}" data-action="set-line-material" data-id="${line.id}">${line.name} +¥${line.price}</button>`
+                  ).join("")}
+                </div>
+              </div>
+            </div>
+            <div class="product-note">
+              <span>${PRODUCT_TYPES.find((item) => item.id === state.productType).note}</span>
+              <strong>${discountText}</strong>
+            </div>
+
+            <div class="design-stats">
+              <div class="design-stat design-stat--price">
+                <span>当前设计价</span>
+                <strong>¥${summary.totalPrice}</strong>
+                <small>含 ${summary.lineMaterial.name} ¥${summary.linePrice}</small>
+              </div>
+              <div class="design-stat">
+                <span>${summary.fitLabel}</span>
+                <strong>${summary.wristRange}</strong>
+                <small>预计周长 ${summary.circumference}cm</small>
+              </div>
+            </div>
+
+            <div class="design-board">${renderBoard(beads, "design-board", state.productType, state.lineMaterial)}</div>
+
+            <div class="tools-row">
+              <button class="tool" data-action="undo"><span class="tool-icon">↶</span><span>撤销</span></button>
+              <button class="tool" data-action="use-template" data-id="galaxy"><span class="tool-icon">◎</span><span>示例</span></button>
+              <button class="tool danger" data-action="clear-design"><span class="tool-icon">×</span><span>清空</span></button>
+            </div>
+
+            <div class="progress-wrap">
+              <div class="progress-line"><div class="progress-fill" style="width:${summary.progress}%"></div></div>
+              <div class="progress-text">
+                <span>建议 ${summary.target} 颗左右</span>
+                <span>${summary.canCheckout ? "可以结算" : `至少还需要 ${Math.max(0, summary.minimumCheckoutCount - summary.count)} 颗`}</span>
+              </div>
+            </div>
+
+            <div class="design-actions">
+              <button class="ghost-button" data-action="save-design">保存设计</button>
+              <button class="secondary-button" data-action="open-publish">发布社区</button>
+              <button class="primary-button" data-action="checkout" ${summary.canCheckout ? "" : "disabled"}>
+                去结算 <span style="color:#f2d29b;">¥${summary.totalPrice}</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="library-panel">
+            <div class="section-head" style="margin-top:0;">
+              <h2 class="section-title">珠子库</h2>
+              <span class="section-note">${selected.length} 种在用</span>
+            </div>
+
+            <div class="category-tabs">
+              ${CATEGORIES.map(
+                (category) =>
+                  `<button class="category-tab ${state.category === category.id ? "active" : ""}" data-action="set-category" data-id="${category.id}">${category.name}</button>`
+              ).join("")}
+            </div>
+
+            <div class="selected-line">
+              ${selected
+                .map(
+                  (item) => `
+                    <span class="selected-chip">
+                      <span class="mini-bead" style="${item.style}"></span>
+                      ${escapeHtml(item.name)} ×${item.count}
+                    </span>
+                  `
+                )
+                .join("")}
+            </div>
+
+            <section class="color-advice">
+              <div class="color-advice__head">
+                <div>
+                  <strong>配色建议</strong>
+                  <span>根据当前设计自动分析</span>
+                </div>
+                <span class="color-advice__title">${colorAdvice.title}</span>
+              </div>
+              <p>${colorAdvice.ratio}</p>
+              <small>${colorAdvice.text}</small>
+              <div class="palette-row">
+                ${COLOR_PALETTES.map(
+                  (palette) => `
+                    <button data-action="apply-palette" data-id="${palette.id}">
+                      <span>${palette.name}</span>
+                      <small>${palette.ratio}</small>
+                    </button>
+                  `
+                ).join("")}
+              </div>
+            </section>
+
+            <div class="material-grid">
+              ${materials
+                .map((item) => {
+                  const count = state.beadIds.filter((id) => id === item.id).length;
+                  const shapeClass = item.shape === "square" ? "square" : item.shape === "hex" ? "hex" : "";
+                  return `
+                    <article class="material-card ${count ? "active" : ""}" data-action="show-material" data-id="${item.id}">
+                      ${count ? `<span class="usage-badge">${count}</span>` : ""}
+                      <div class="material-bead ${shapeClass}" style="${getMaterialStyle(item)}"></div>
+                      <div class="material-name">${escapeHtml(item.name)}</div>
+                      <div class="material-meta">${state.beadSize}mm · ¥${getEffectivePrice(item, state.beadSize)}/颗</div>
+                      <div class="card-actions">
+                        <button class="card-action" data-action="remove-bead" data-id="${item.id}" aria-label="减少${escapeHtml(item.name)}">−</button>
+                        <button class="card-action add" data-action="add-bead" data-id="${item.id}" aria-label="增加${escapeHtml(item.name)}">＋</button>
+                      </div>
+                    </article>
+                  `;
+                })
+                .join("")}
+            </div>
+
+            <p class="legal-note" style="margin-top:16px;">图中材料用于搭配示意。正式销售需核验真实树种、合法来源、表面处理材料和适用检测资料。</p>
+          </section>
+        </div>
+      </main>
+    `;
+  }
+
+  function renderProfile() {
+    return `
+      <main class="page">
+        <section class="profile-hero">
+          <div class="profile-avatar">木</div>
+          <div>
+            <h1>木拾光设计室</h1>
+            <p>六名木材科学与工程专业同学组成的校园创业团队，用专业知识帮你选出适合自己的木色与玉色。</p>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card surface"><strong>${state.designs.length}</strong><span>保存设计</span></div>
+          <div class="stat-card surface"><strong>${state.orders.length}</strong><span>订单记录</span></div>
+          <div class="stat-card surface"><strong>${MATERIALS.length}</strong><span>材质条目</span></div>
+        </section>
+
+        <section class="menu-list surface">
+          <button class="menu-row" data-action="open-orders">
+            <span class="menu-symbol">单</span>
+            <span class="menu-copy"><strong>我的订单</strong><span>查看待付款、制作中和历史订单</span></span>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-row" data-action="open-knowledge">
+            <span class="menu-symbol">材</span>
+            <span class="menu-copy"><strong>木玉材质图鉴</strong><span>颜色、纹理、养护和合规提示</span></span>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-row" data-action="open-service">
+            <span class="menu-symbol">聊</span>
+            <span class="menu-copy"><strong>联系客服</strong><span>套餐、尺寸、团体定制和售后咨询</span></span>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-row" data-action="clear-data">
+            <span class="menu-symbol">清</span>
+            <span class="menu-copy"><strong>清除本地记录</strong><span>重置设计和订单演示数据</span></span>
+            <span class="menu-arrow">›</span>
+          </button>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">我的设计</h2>
+          <span class="section-note">点击可继续修改</span>
+        </div>
+
+        ${
+          state.designs.length
+            ? `<section class="saved-grid">
+                ${state.designs
+                  .map(
+                    (design) => `
+                      <article class="saved-card surface">
+                        <div class="saved-head">
+                          <div>
+                            <h3>${escapeHtml(design.name)}</h3>
+                            <div class="saved-meta">${design.summary.count} 颗 · ¥${design.summary.totalPrice} · ${formatDate(design.createdAt)}</div>
+                          </div>
+                          <button class="small-link" data-action="delete-design" data-id="${design.id}">删除</button>
+                        </div>
+                        <div class="card-actions-row">
+                          <button class="secondary-button" data-action="use-design" data-id="${design.id}">继续修改</button>
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </section>`
+            : `<section class="empty-state surface">
+                <div>
+                  <div class="empty-disc"></div>
+                  <h2>还没有保存过设计</h2>
+                  <p>在设计台完成搭配后，点击“保存设计”即可收藏。</p>
+                  <button class="secondary-button" style="margin-top:18px;" data-action="go-tab" data-tab="design">去设计</button>
+                </div>
+              </section>`
+        }
+      </main>
+    `;
+  }
+
+  function renderCheckout() {
+    const checkout = state.checkout || createCheckout();
+    const summary =
+      checkout.summary ||
+      calculateDesign(
+        checkout.beadIds,
+        checkout.productType,
+        checkout.beadSize,
+        checkout.beadSizes,
+        checkout.lineMaterial
+      );
+    const shippingFee = 8;
+    const giftFee = checkout.giftWrap ? 12 : 0;
+    const total = summary.totalPrice + shippingFee + giftFee;
+    const sizeChoices =
+      checkout.productType === "ring"
+        ? ["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"]
+        : checkout.productType === "necklace"
+          ? ["40", "42", "44", "46", "48", "50"]
+          : ["14", "15", "16", "17", "18", "19"];
+    const sizeLabel =
+      checkout.productType === "ring" ? "戒指直径" : checkout.productType === "necklace" ? "期望颈围" : "实际手围";
+    checkout.total = total;
+    const isCombo = Boolean(checkout.combo);
+    const isParentCombo =
+      checkout.combo && checkout.combo.packageId === "parentChild";
+    const firstComboLabel = isParentCombo ? "成人款" : "第一款";
+    const secondComboLabel = isParentCombo ? "儿童款" : "第二款";
+    const previewMarkup = isCombo
+      ? `
+        <div class="checkout-board is-pair">
+          <div>
+            <div class="combo-preview-label">${firstComboLabel}</div>
+            ${renderBoard(buildBracelet(checkout.combo.adult.beadIds, "bracelet", checkout.combo.adult.beadSize, checkout.combo.adult.beadSizes), "", "bracelet", checkout.combo.adult.lineMaterial)}
+          </div>
+          <div>
+            <div class="combo-preview-label">${secondComboLabel}</div>
+            ${renderBoard(buildBracelet(checkout.combo.child.beadIds, "bracelet", checkout.combo.child.beadSize, checkout.combo.child.beadSizes), "", "bracelet", checkout.combo.child.lineMaterial)}
+          </div>
+        </div>
+      `
+      : `<div class="checkout-board">${renderBoard(buildBracelet(checkout.beadIds, checkout.productType, checkout.beadSize, checkout.beadSizes), "", checkout.productType, checkout.lineMaterial)}</div>`;
+    const sizeMarkup = isCombo
+      ? `<div class="combo-order-note">
+          <div><span>${firstComboLabel}手围</span><strong>${checkout.combo.adult.wrist}cm</strong></div>
+          <div><span>${secondComboLabel}手围</span><strong>${checkout.combo.child.wrist}cm</strong></div>
+          <div><span>组合优惠</span><strong class="price">-¥${checkout.combo.discount}</strong></div>
+        </div>`
+      : `<div class="field">
+          <span class="field-label">${sizeLabel}</span>
+          <div class="choice-row">
+            ${sizeChoices
+              .map(
+                (size) =>
+                  `<button type="button" class="choice ${checkout.wrist === size ? "active" : ""}" data-action="set-wrist" data-value="${size}">${size}cm</button>`
+              )
+              .join("")}
+          </div>
+        </div>`;
+
+    return `
+      <main class="page">
+        <div class="back-row">
+          <button class="icon-button" data-action="back-design">‹</button>
+          <h1>确认订单</h1>
+        </div>
+
+        <div class="checkout-grid">
+          <section class="checkout-preview surface">
+            <div>
+              <div class="eyebrow" style="color:#8a938f;">ORDER PREVIEW</div>
+              <h2 style="margin:9px 0 0;">${escapeHtml(checkout.designName)}</h2>
+            </div>
+            ${previewMarkup}
+            <div class="facts">
+              <div class="fact"><span>产品</span><strong>${summary.productName}</strong></div>
+              <div class="fact"><span>珠径</span><strong>${summary.beadSize}mm</strong></div>
+              <div class="fact"><span>连接线</span><strong>${summary.lineMaterial.name}</strong></div>
+              <div class="fact"><span>珠子</span><strong>${summary.count} 颗</strong></div>
+              <div class="fact"><span>预计周长</span><strong>${summary.circumference}cm</strong></div>
+              <div class="fact"><span>${summary.fitLabel}</span><strong>${summary.wristRange}</strong></div>
+              <div class="fact"><span>制作周期</span><strong>3—5 个工作日</strong></div>
+            </div>
+          </section>
+
+          <div>
+            <form id="checkout-form" class="form-card surface">
+              <h2>佩戴与定制</h2>
+
+              ${sizeMarkup}
+
+              <div class="field">
+                <label for="engraving">定制刻字（选填，最多12字）</label>
+                <input
+                  id="engraving"
+                  class="text-control"
+                  name="engraving"
+                  maxlength="12"
+                  placeholder="例如：2026.09.25"
+                  value="${escapeHtml(checkout.form.engraving)}"
+                  data-field="engraving"
+                />
+              </div>
+
+              <div class="switch-line">
+                <div>
+                  <span class="field-label">礼盒包装</span>
+                  <small>含礼盒、养护卡与赠言卡</small>
+                </div>
+                <input id="gift-wrap" type="checkbox" ${checkout.giftWrap ? "checked" : ""} />
+              </div>
+            </form>
+
+            <form class="form-card surface" style="margin-top:18px;" id="shipping-form">
+              <h2>收货信息</h2>
+              <div class="field">
+                <label for="receiver">收货人</label>
+                <input id="receiver" class="text-control" name="receiver" maxlength="12" placeholder="请输入姓名" value="${escapeHtml(checkout.form.receiver)}" data-field="receiver" />
+              </div>
+              <div class="field">
+                <label for="phone">手机号码</label>
+                <input id="phone" class="text-control" name="phone" maxlength="11" inputmode="numeric" placeholder="请输入手机号" value="${escapeHtml(checkout.form.phone)}" data-field="phone" />
+              </div>
+              <div class="field">
+                <label for="address">收货地址</label>
+                <textarea id="address" class="text-control" name="address" maxlength="80" placeholder="省市区、街道、门牌号" data-field="address">${escapeHtml(checkout.form.address)}</textarea>
+              </div>
+              <div class="field">
+                <label for="remark">订单备注</label>
+                <textarea id="remark" class="text-control" name="remark" maxlength="60" placeholder="尺寸或设计备注（选填）" data-field="remark">${escapeHtml(checkout.form.remark)}</textarea>
+              </div>
+            </form>
+
+            <section class="price-box surface" style="margin-top:18px;">
+              <div class="price-row"><span>珠子与制作费</span><span>¥${summary.totalPrice}</span></div>
+              ${isCombo ? `<div class="price-row"><span>亲子双人优惠</span><span class="price">已减 ¥${checkout.combo.discount}</span></div>` : ""}
+              <div class="price-row"><span>配送费</span><span>¥${shippingFee}</span></div>
+              ${checkout.giftWrap ? `<div class="price-row"><span>礼盒包装</span><span>¥${giftFee}</span></div>` : ""}
+              <div class="price-row total"><span>合计</span><span class="price">¥${total}</span></div>
+            </section>
+
+            <p class="checkout-note">定制手串按确认设计制作。天然木材存在合理色差和纹理差异；质量问题、错发漏发或与确认设计不一致时，商家负责返修、补发或退款。</p>
+
+            <button class="primary-button" style="width:100%;margin-top:12px;" data-action="submit-order">提交订单 ¥${total}</button>
+          </div>
+        </div>
+      </main>
+    `;
+  }
+
+  function renderOrders() {
+    return `
+      <main class="page">
+        <div class="back-row">
+          <button class="icon-button" data-action="go-tab" data-tab="profile">‹</button>
+          <h1>我的订单</h1>
+        </div>
+
+        ${
+          state.orders.length
+            ? `<section class="order-grid">
+                ${state.orders
+                  .map(
+                    (order) => `
+                      <article class="order-card surface">
+                        <div class="order-head">
+                          <div>
+                            <h3>${escapeHtml(order.designName)}</h3>
+                            <div class="order-meta">${order.id}<br />${formatDate(order.createdAt)}</div>
+                          </div>
+                          <span class="status-pill">${escapeHtml(order.status)}</span>
+                        </div>
+                        <div class="order-meta">${escapeHtml(order.summary.productName || "手串")} · ${order.summary.beadSize || 12}mm · ${order.summary.count} 颗 · 手围 ${order.wrist}cm</div>
+                        <div class="order-meta">收货人：${escapeHtml(order.receiver)}</div>
+                        <div class="price" style="margin-top:14px;font-size:22px;">¥${order.totalPrice}</div>
+                        <div class="card-actions-row">
+                          ${
+                            order.status === "待付款"
+                              ? `<button class="ghost-button" data-action="cancel-order" data-id="${order.id}">取消订单</button>
+                                 <button class="primary-button" data-action="mark-paid" data-id="${order.id}">模拟支付</button>`
+                              : `<button class="secondary-button" data-action="view-order" data-id="${order.id}">查看订单</button>`
+                          }
+                        </div>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </section>`
+            : `<section class="empty-state surface">
+                <div>
+                  <div class="empty-disc"></div>
+                  <h2>还没有订单</h2>
+                  <p>先完成一条属于自己的搭配，再回来查看制作进度。</p>
+                  <button class="secondary-button" style="margin-top:18px;" data-action="go-tab" data-tab="design">去设计</button>
+                </div>
+              </section>`
+        }
+      </main>
+    `;
+  }
+
+  function renderPackageOptions(packageItem) {
+    const detail = state.packageDetail;
+
+    if (packageItem.id === "studentDaily") {
+      return `
+        <section class="package-options surface student-options">
+          <h3>校园场景推荐</h3>
+          <p>选择主要使用场景，页面会给出更适合的佩戴和搭配建议。</p>
+          <div class="choice-row">
+            ${["上课日常", "社团活动", "考试许愿", "毕业季前"]
+              .map(
+                (scene) =>
+                  `<button type="button" class="choice ${detail.studentScene === scene ? "active" : ""}" data-action="set-package-option" data-field="studentScene" data-value="${scene}">${scene}</button>`
+              )
+              .join("")}
+          </div>
+          <div class="package-feature-note">
+            <strong>宿舍三人组合</strong>
+            <span>同款或同主题订3串，可联系客服协商校园组合价。</span>
+          </div>
+        </section>
+      `;
+    }
+
+    if (packageItem.id === "coupleMemory") {
+      return `
+        <section class="package-options surface">
+          <h3>情侣双串专属设置</h3>
+          <p>两串可以分别选择手围，也可在结算备注中填写姓名或纪念日期。</p>
+          <div class="field">
+            <span class="field-label">第二位佩戴手围</span>
+            <div class="choice-row">
+              ${["14", "15", "16", "17", "18", "19"]
+                .map(
+                  (size) =>
+                    `<button type="button" class="choice ${detail.partnerWrist === size ? "active" : ""}" data-action="set-package-option" data-field="partnerWrist" data-value="${size}">${size}cm</button>`
+                )
+              .join("")}
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label">两串搭配方式</span>
+            <div class="choice-row">
+              ${[
+                ["same", "同款情侣"],
+                ["mirror", "镜像珠序"],
+                ["contrast", "冷暖互补"]
+              ]
+                .map(
+                  ([id, name]) =>
+                    `<button type="button" class="choice ${detail.coupleTheme === id ? "active" : ""}" data-action="set-package-option" data-field="coupleTheme" data-value="${id}">${name}</button>`
+                )
+                .join("")}
+            </div>
+          </div>
+          <div class="package-feature-note">
+            <strong>双串组合价约九二折</strong>
+            <span>默认包含两只独立包装袋，推荐款起升级为双人礼盒。</span>
+          </div>
+        </section>
+      `;
+    }
+
+    if (packageItem.id === "graduationGift") {
+      return `
+        <section class="package-options surface">
+          <h3>毕业纪念设置</h3>
+          <div class="choice-row">
+            ${["个人纪念", "同学互赠", "班级集体礼"]
+              .map(
+                (scene) =>
+                  `<button type="button" class="choice ${detail.graduationScene === scene ? "active" : ""}" data-action="set-package-option" data-field="graduationScene" data-value="${scene}">${scene}</button>`
+              )
+              .join("")}
+          </div>
+          <div class="field">
+            <label for="graduation-text">毕业年份、姓名或短句</label>
+            <input id="graduation-text" class="text-control" maxlength="20" value="${escapeHtml(detail.graduationText)}" placeholder="例如：2026届 · 小林" data-package-field="graduationText" />
+          </div>
+          <div class="package-feature-note">
+            <strong>班级集体礼</strong>
+            <span>10串起可协商统一包装、统一刻字和分批交付。</span>
+          </div>
+        </section>
+      `;
+    }
+
+    if (packageItem.id === "commuterNecklace") {
+      return `
+        <section class="package-options surface">
+          <h3>项链长度建议</h3>
+          <div class="choice-row">
+            ${["日常通勤", "约会叠戴", "秋冬内搭"]
+              .map(
+                (scene) =>
+                  `<button type="button" class="choice ${detail.commuterScene === scene ? "active" : ""}" data-action="set-package-option" data-field="commuterScene" data-value="${scene}">${scene}</button>`
+              )
+              .join("")}
+          </div>
+          <div class="choice-row">
+            ${["40", "45", "50", "55"]
+              .map(
+                (length) =>
+                  `<button type="button" class="choice ${detail.commuterLength === length ? "active" : ""}" data-action="set-package-option" data-field="commuterLength" data-value="${length}">${length}cm</button>`
+              )
+              .join("")}
+          </div>
+          <p>40cm偏锁骨链，45cm适合日常通勤，50cm以上适合叠戴或秋冬内搭。</p>
+          <div class="package-feature-note">
+            <strong>可拆分设计</strong>
+            <span>预留连接扣后，长项链可拆成短链和同色手串分别佩戴。</span>
+          </div>
+        </section>
+      `;
+    }
+
+    if (packageItem.id === "parentChild") {
+      const tierData = getPackageTierData(packageItem, state.selectedTierId);
+      const childSize = Math.max(6, tierData.beadSize - 2);
+      const childIds = getParentChildChildIds(
+        tierData.ids,
+        detail.parentTheme,
+        childSize
+      );
+      const childSummary = calculateDesign(
+        childIds,
+        "bracelet",
+        childSize,
+        createSizeArray(childIds.length, childSize),
+        tierData.tier.lineMaterial
+      );
+      const rawTotal = tierData.summary.totalPrice + childSummary.totalPrice;
+      const comboPrice = Math.round(rawTotal * 0.82);
+      return `
+        <section class="package-options surface">
+          <h3>一大一小亲子组合</h3>
+          <p>成人款与儿童款分别计算珠数和手围，组合价默认约八二折。</p>
+          <div class="field">
+            <span class="field-label">成人手围</span>
+            <div class="choice-row">
+              ${["14", "15", "16", "17", "18", "19"]
+                .map(
+                  (size) =>
+                    `<button type="button" class="choice ${detail.adultWrist === size ? "active" : ""}" data-action="set-package-option" data-field="adultWrist" data-value="${size}">${size}cm</button>`
+                )
+                .join("")}
+            </div>
+          </div>
+          <div class="quantity-table">
+            <div><span>10—20份</span><strong>约95折</strong></div>
+            <div><span>20—50份</span><strong>约90折</strong></div>
+            <div><span>50—100份</span><strong>约85折</strong></div>
+            <div><span>100份以上</span><strong>单独协商</strong></div>
+          </div>
+          <ol class="corporate-flow">
+            <li>提交数量、交期和定制需求</li>
+            <li>客服确认材质、包装和预算</li>
+            <li>打样确认后签订单</li>
+            <li>分批生产与交付</li>
+          </ol>
+          <div class="field">
+            <span class="field-label">儿童手围</span>
+            <div class="choice-row">
+              ${["11", "12", "13", "14", "15"]
+                .map(
+                  (size) =>
+                    `<button type="button" class="choice ${detail.childWrist === size ? "active" : ""}" data-action="set-package-option" data-field="childWrist" data-value="${size}">${size}cm</button>`
+                )
+                .join("")}
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label">双人配色</span>
+            <div class="choice-row">
+              ${[
+                ["same", "同款亲子"],
+                ["warm", "暖玉亲子"],
+                ["natural", "原木亲子"]
+              ]
+                .map(
+                  ([id, name]) =>
+                    `<button type="button" class="choice ${detail.parentTheme === id ? "active" : ""}" data-action="set-package-option" data-field="parentTheme" data-value="${id}">${name}</button>`
+                )
+                .join("")}
+            </div>
+          </div>
+          <div class="combo-summary">
+            <div><span>成人款</span><strong>¥${tierData.summary.totalPrice}</strong></div>
+            <div><span>儿童款</span><strong>¥${childSummary.totalPrice}</strong></div>
+            <div><span>组合优惠价</span><strong class="price">¥${comboPrice}</strong></div>
+          </div>
+          <button class="primary-button" data-action="checkout-parent">按一大一小组合结算 ¥${comboPrice}</button>
+        </section>
+      `;
+    }
+
+    if (packageItem.id === "corporateGift") {
+      return `
+        <section class="package-options surface">
+          <h3>团体定制协商窗口</h3>
+          <p>团体订单需提前与商家协商数量、交期、包装、品牌文字、开票和分批交付方式。</p>
+          <div class="field">
+            <span class="field-label">预计数量</span>
+            <div class="choice-row">
+              ${["10—20份", "20—50份", "50—100份", "100份以上"]
+                .map(
+                  (quantity) =>
+                    `<button type="button" class="choice ${detail.corporateQuantity === quantity ? "active" : ""}" data-action="set-package-option" data-field="corporateQuantity" data-value="${quantity}">${quantity}</button>`
+                )
+                .join("")}
+            </div>
+          </div>
+          <div class="field">
+            <label for="corporate-note">针对性备注</label>
+            <textarea id="corporate-note" class="text-control" maxlength="180" placeholder="填写企业名称、交付时间、包装要求、Logo或文字、发票需求等" data-package-field="corporateNote">${escapeHtml(detail.corporateNote)}</textarea>
+          </div>
+          <button class="secondary-button" data-action="open-service" data-context="团体礼品协商">提交给客服协商</button>
+        </section>
+      `;
+    }
+
+    return "";
+  }
+
+  function renderPackageDetail() {
+    const packageItem = PACKAGES.find((item) => item.id === state.selectedPackageId);
+    if (!packageItem) {
+      state.view = "home";
+      return renderHome();
+    }
+
+    const detail = PACKAGE_DETAILS[packageItem.id];
+    const selectedTier = getPackageTierData(packageItem, state.selectedTierId);
+    const isParentChild = packageItem.id === "parentChild";
+    const isCouplePair = packageItem.id === "coupleMemory";
+    const parentChildSize = Math.max(6, selectedTier.beadSize - 2);
+    const childIds = isParentChild
+      ? getParentChildChildIds(selectedTier.ids, state.packageDetail.parentTheme, parentChildSize)
+      : [];
+    const childSummary = isParentChild
+      ? calculateDesign(
+          childIds,
+          "bracelet",
+          parentChildSize,
+          createSizeArray(childIds.length, parentChildSize),
+          selectedTier.tier.lineMaterial
+        )
+      : null;
+    const coupleSecondIds = isCouplePair
+      ? getCoupleSecondIds(selectedTier.ids, state.packageDetail.coupleTheme)
+      : [];
+    const coupleSecondSummary = isCouplePair
+      ? calculateDesign(
+          coupleSecondIds,
+          "bracelet",
+          selectedTier.beadSize,
+          createSizeArray(coupleSecondIds.length, selectedTier.beadSize),
+          selectedTier.tier.lineMaterial
+        )
+      : null;
+    const comboPrice = isParentChild
+      ? Math.round((selectedTier.summary.totalPrice + childSummary.totalPrice) * 0.82)
+      : isCouplePair
+        ? Math.round((selectedTier.summary.totalPrice + coupleSecondSummary.totalPrice) * 0.92)
+        : selectedTier.summary.totalPrice;
+
+    return `
+      <main class="page">
+        <div class="back-row">
+          <button class="icon-button" data-action="go-tab" data-tab="home">‹</button>
+          <div>
+            <div class="eyebrow" style="color:#8c958f;">PACKAGE RECOMMENDATION</div>
+            <h1>${escapeHtml(packageItem.name)}</h1>
+          </div>
+        </div>
+
+        <section class="package-detail-hero">
+          <div>
+            <span class="package-audience">${escapeHtml(packageItem.audience)}</span>
+            <h2>${escapeHtml(detail.headline)}</h2>
+            <p>${escapeHtml(detail.summary)}</p>
+            <div class="benefit-list">
+              ${detail.benefits.map((benefit) => `<span>${escapeHtml(benefit)}</span>`).join("")}
+            </div>
+          </div>
+          <div class="package-detail-price">
+            <span>${isParentChild || isCouplePair ? "双人组合价" : "当前方案价"}</span>
+            <strong>¥${comboPrice}</strong>
+            <small>${selectedTier.beadSize}mm · ${getProductName(packageItem.productType)}</small>
+          </div>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">不同价位推荐</h2>
+          <span class="section-note">珠子、连接线和包装会随档位变化</span>
+        </div>
+
+        <section class="tier-grid">
+          ${PACKAGE_TIERS.map((tier) => {
+            const tierData = getPackageTierData(packageItem, tier.id);
+            const tierChildSize = Math.max(6, tierData.beadSize - 2);
+            const tierChildIds = isParentChild
+              ? getParentChildChildIds(tierData.ids, state.packageDetail.parentTheme, tierChildSize)
+              : [];
+            const tierChildSummary = isParentChild
+              ? calculateDesign(
+                  tierChildIds,
+                  "bracelet",
+                  tierChildSize,
+                  createSizeArray(tierChildIds.length, tierChildSize),
+                  tier.lineMaterial
+                )
+              : null;
+            const tierCoupleIds = isCouplePair
+              ? getCoupleSecondIds(
+                  tierData.ids,
+                  state.packageDetail.coupleTheme
+                )
+              : [];
+            const tierCoupleSummary = isCouplePair
+              ? calculateDesign(
+                  tierCoupleIds,
+                  "bracelet",
+                  tierData.beadSize,
+                  createSizeArray(tierCoupleIds.length, tierData.beadSize),
+                  tier.lineMaterial
+                )
+              : null;
+            const tierPrice = isParentChild
+              ? Math.round((tierData.summary.totalPrice + tierChildSummary.totalPrice) * 0.82)
+              : isCouplePair
+                ? Math.round((tierData.summary.totalPrice + tierCoupleSummary.totalPrice) * 0.92)
+                : tierData.summary.totalPrice;
+            const materials = summarizeMaterials(tierData.ids);
+            return `
+              <article class="tier-card surface ${state.selectedTierId === tier.id ? "active" : ""}" data-action="select-tier" data-id="${tier.id}">
+                <div class="tier-head">
+                  <div>
+                    <span>${tier.tag}</span>
+                    <h3>${tier.name}</h3>
+                  </div>
+                  <strong class="price">¥${tierPrice}</strong>
+                </div>
+                <p>${tier.description}</p>
+                <div class="tier-materials">
+                  ${materials.slice(0, 4).map((item) => `<span>${escapeHtml(item.name)}</span>`).join("")}
+                </div>
+                <ul>
+                  ${tierData.content.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+                </ul>
+                <div class="tier-foot">${tierData.beadSize}mm · ${getLineMaterial(tier.lineMaterial).name}</div>
+              </article>
+            `;
+          }).join("")}
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">${isParentChild ? "一大一小预览" : isCouplePair ? "情侣双串预览" : "推荐成品预览"}</h2>
+          <span class="section-note">${getLineMaterial(selectedTier.tier.lineMaterial).name}</span>
+        </div>
+
+        <section class="package-preview-pair ${isParentChild || isCouplePair ? "is-pair" : ""}">
+          <article class="package-preview-card surface">
+            <div class="package-preview-label">${isParentChild ? "成人款" : isCouplePair ? "第一款" : selectedTier.tier.name}</div>
+            <div class="package-large-preview">${renderBoard(buildBracelet(selectedTier.ids, packageItem.productType, selectedTier.beadSize, createSizeArray(selectedTier.ids.length, selectedTier.beadSize)), "", packageItem.productType, selectedTier.tier.lineMaterial)}</div>
+            <div class="package-preview-meta">${selectedTier.summary.count} 颗 · ${selectedTier.beadSize}mm · ¥${selectedTier.summary.totalPrice}</div>
+          </article>
+          ${
+            isParentChild
+              ? `<article class="package-preview-card surface">
+                  <div class="package-preview-label">儿童款</div>
+                  <div class="package-large-preview">${renderBoard(buildBracelet(childIds, "bracelet", parentChildSize, createSizeArray(childIds.length, parentChildSize)), "", "bracelet", selectedTier.tier.lineMaterial)}</div>
+                  <div class="package-preview-meta">${childSummary.count} 颗 · ${parentChildSize}mm · ¥${childSummary.totalPrice}</div>
+                </article>`
+              : isCouplePair
+                ? `<article class="package-preview-card surface">
+                    <div class="package-preview-label">第二款</div>
+                    <div class="package-large-preview">${renderBoard(buildBracelet(coupleSecondIds, "bracelet", selectedTier.beadSize, createSizeArray(coupleSecondIds.length, selectedTier.beadSize)), "", "bracelet", selectedTier.tier.lineMaterial)}</div>
+                    <div class="package-preview-meta">${coupleSecondSummary.count} 颗 · ${selectedTier.beadSize}mm · ¥${coupleSecondSummary.totalPrice}</div>
+                  </article>`
+              : ""
+          }
+        </section>
+
+        ${renderPackageOptions(packageItem)}
+
+        <div class="package-detail-actions">
+          ${
+            packageItem.id === "corporateGift"
+              ? `<button class="secondary-button" data-action="open-service" data-context="团体礼品协商">联系客服确认</button>`
+              : ""
+          }
+          ${
+            isParentChild
+              ? `<button class="primary-button" data-action="checkout-parent">定制一大一小 ¥${comboPrice}</button>`
+              : isCouplePair
+                ? `<button class="primary-button" data-action="checkout-couple">定制情侣双串 ¥${comboPrice}</button>`
+              : `<button class="primary-button" data-action="use-tier" data-package="${packageItem.id}" data-tier="${state.selectedTierId}">按${selectedTier.tier.name}进入设计台</button>`
+          }
+        </div>
+      </main>
+    `;
+  }
+
+  function renderService() {
+    return `
+      <main class="page">
+        <div class="back-row">
+          <button class="icon-button" data-action="go-tab" data-tab="home">‹</button>
+          <h1>联系客服</h1>
+        </div>
+
+        <section class="service-hero">
+          <div class="service-avatar">客</div>
+          <div>
+            <h2>木拾光客服</h2>
+            <p>工作日 9:00—21:00，提供套餐咨询、尺寸建议、团体定制和售后处理。</p>
+          </div>
+          <span class="service-online">在线</span>
+        </section>
+
+        <div class="service-grid">
+          <form class="service-form surface" id="service-form">
+            <h2>留下需求</h2>
+            <div class="field">
+              <label for="service-name">称呼</label>
+              <input id="service-name" class="text-control" maxlength="12" value="${escapeHtml(state.serviceForm.name)}" placeholder="怎么称呼您" data-service-field="name" />
+            </div>
+            <div class="field">
+              <label for="service-phone">联系电话或微信号</label>
+              <input id="service-phone" class="text-control" maxlength="30" value="${escapeHtml(state.serviceForm.phone)}" placeholder="用于客服回复" data-service-field="phone" />
+            </div>
+            <div class="field">
+              <span class="field-label">咨询类型</span>
+              <div class="choice-row">
+                ${["套餐咨询", "尺寸建议", "团体礼品", "订单售后"]
+                  .map(
+                    (type) =>
+                      `<button type="button" class="choice ${state.serviceForm.type === type ? "active" : ""}" data-action="set-service-type" data-value="${type}">${type}</button>`
+                  )
+                  .join("")}
+              </div>
+            </div>
+            <div class="field">
+              <label for="service-message">具体需求</label>
+              <textarea id="service-message" class="text-control" maxlength="300" placeholder="请填写数量、交期、预算、刻字或包装要求" data-service-field="message">${escapeHtml(state.serviceForm.message)}</textarea>
+            </div>
+            <button type="button" class="primary-button" data-action="submit-service">提交咨询</button>
+          </form>
+
+          <section class="service-info surface">
+            <h2>常见问题</h2>
+            <div class="faq-item">
+              <strong>定制多久发货？</strong>
+              <p>常规订单约3—5个工作日，复杂刻字或团体订单以客服确认时间为准。</p>
+            </div>
+            <div class="faq-item">
+              <strong>可以在同一条链上混用不同珠径吗？</strong>
+              <p>可以。设计台切换珠径后继续加入珠子，就能保留不同大小。</p>
+            </div>
+            <div class="faq-item">
+              <strong>团体礼品如何报价？</strong>
+              <p>请提交数量、交期、包装和文字要求，确认打样后再签订单。</p>
+            </div>
+            <div class="faq-item">
+              <strong>儿童款需要注意什么？</strong>
+              <p>建议使用6—10mm圆珠，并重新确认儿童实际手围和佩戴安全。</p>
+            </div>
+          </section>
+        </div>
+
+        ${state.serviceInquiries.length ? `<p class="service-history">当前浏览器已有 ${state.serviceInquiries.length} 条咨询记录。</p>` : ""}
+      </main>
+    `;
+  }
+
+  function renderKnowledge() {
+    const materials = MATERIALS.filter((item) => item.category === state.knowledgeCategory);
+
+    return `
+      <main class="page">
+        <div class="back-row">
+          <button class="icon-button" data-action="go-tab" data-tab="profile">‹</button>
+          <h1>材质图鉴</h1>
+        </div>
+
+        <section class="knowledge-hero">
+          <div class="eyebrow">MATERIAL LIBRARY</div>
+          <h1>先懂材质，再选珠子。</h1>
+          <p>图鉴用于理解颜色、纹理和搭配方向。正式经营时，商品名称、产地、检测结果与合法来源必须逐项核验。</p>
+        </section>
+
+        <div class="category-tabs" style="margin-top:20px;">
+          ${CATEGORIES.map(
+            (category) =>
+              `<button class="category-tab ${state.knowledgeCategory === category.id ? "active" : ""}" data-action="set-knowledge-category" data-id="${category.id}">${category.name}</button>`
+          ).join("")}
+        </div>
+
+        <section class="knowledge-grid" style="margin-top:18px;">
+          ${materials
+            .map((item) => {
+              const shapeClass = item.shape === "square" ? "square" : item.shape === "hex" ? "hex" : "";
+              return `
+                <article class="knowledge-card surface" data-action="open-material-detail" data-id="${item.id}">
+                  <div class="material-bead ${shapeClass}" style="${getMaterialStyle(item)}"></div>
+                  <div>
+                    <h3>${escapeHtml(item.name)} <span class="price" style="font-size:12px;">¥${getEffectivePrice(item, 6)}—${getEffectivePrice(item, 14)}/颗</span></h3>
+                    <p>${escapeHtml(item.note)}。6—14mm可选，点击查看详细材质介绍。</p>
+                    ${item.legalTip ? `<div class="knowledge-tip">${escapeHtml(item.legalTip)}</div>` : ""}
+                  </div>
+                </article>
+              `;
+            })
+            .join("")}
+        </section>
+
+        <section class="care-card surface">
+          <h2>日常养护</h2>
+          <p>01　避免长时间暴晒、泡水和剧烈温差，洗澡、游泳或运动时建议取下。</p>
+          <p>02　木质珠串可用干净软布轻擦，不随意涂抹来路不明的油或蜡。</p>
+          <p>03　弹力线会自然老化，发现起毛、变细或回弹明显变差时应及时换线。</p>
+          <p>04　天然材料存在颜色和纹理差异，合理色差不属于质量问题，但应提前说明范围。</p>
+        </section>
+      </main>
+    `;
+  }
+
+  function formatRelativeTime(timestamp) {
+    const minutes = Math.max(1, Math.round((Date.now() - timestamp) / 60000));
+    if (minutes < 60) {
+      return `${minutes}分钟前`;
+    }
+    const hours = Math.round(minutes / 60);
+    if (hours < 24) {
+      return `${hours}小时前`;
+    }
+    return `${Math.round(hours / 24)}天前`;
+  }
+
+  function renderCommunity() {
+    return `
+      <main class="page">
+        <section class="community-hero">
+          <div>
+            <div class="eyebrow">MU SHI GUANG COMMUNITY</div>
+            <h1>拾光社区</h1>
+            <p>发布自己的设计，看看别人的木色、玉色和珠序灵感。喜欢的方案可以直接带回设计台继续改。</p>
+          </div>
+          <button class="community-publish-button" data-action="open-publish">发布当前设计</button>
+        </section>
+
+        <div class="section-head">
+          <h2 class="section-title">大家的作品</h2>
+          <span class="section-note">${state.communityPosts.length} 个设计分享</span>
+        </div>
+
+        <section class="community-grid">
+          ${state.communityPosts
+            .map((post) => {
+              const postSizes =
+                post.beadSizes || createSizeArray(post.beadIds.length, post.beadSize || 12);
+              const summary = calculateDesign(
+                post.beadIds,
+                post.productType,
+                post.beadSize,
+                postSizes,
+                post.lineMaterial || "elastic"
+              );
+              const avatar = escapeHtml((post.designer || "木友").slice(0, 1));
+              return `
+                <article class="community-card surface">
+                  <div class="community-user">
+                    <span class="community-avatar">${avatar}</span>
+                    <div>
+                      <strong>${escapeHtml(post.designer || "匿名木友")}</strong>
+                      <span>${formatRelativeTime(post.createdAt)}发布</span>
+                    </div>
+                    <span class="community-type">${summary.productName} · ${summary.beadSize}mm</span>
+                  </div>
+                  <div class="community-board">${renderBoard(buildBracelet(post.beadIds, post.productType, post.beadSize, postSizes), "", post.productType, post.lineMaterial || "elastic")}</div>
+                  <h3>${escapeHtml(post.note || "分享一份独一无二的木珠搭配。")}</h3>
+                  <div class="community-meta">
+                    <span>${summary.count} 颗</span>
+                    <span>${summary.wristRange}</span>
+                    <span class="price">¥${summary.totalPrice}</span>
+                  </div>
+                  <div class="community-actions">
+                    <button class="${post.liked ? "liked" : ""}" data-action="like-post" data-id="${post.id}">
+                      ♡ ${post.likes || 0}
+                    </button>
+                    <button data-action="use-post" data-id="${post.id}">用这个设计继续改</button>
+                  </div>
+                </article>
+              `;
+            })
+            .join("")}
+        </section>
+
+        <p class="community-note">当前社区为本地演示版，发布内容保存在当前浏览器。正式开放给所有用户查看时，需要接入后端数据库、用户登录和内容审核。</p>
+      </main>
+    `;
+  }
+
+  function renderView() {
+    switch (state.view) {
+      case "home":
+        return renderHome();
+      case "profile":
+        return renderProfile();
+      case "checkout":
+        return renderCheckout();
+      case "orders":
+        return renderOrders();
+      case "knowledge":
+        return renderKnowledge();
+      case "community":
+        return renderCommunity();
+      case "packageDetail":
+        return renderPackageDetail();
+      case "service":
+        return renderService();
+      case "design":
+      default:
+        return renderDesign();
+    }
+  }
+
+  function render() {
+    const navigation = renderNavigation();
+    app.innerHTML = `
+      <div class="app-shell">
+        ${navigation.desktop}
+        ${renderTopbar()}
+        ${renderView()}
+        ${navigation.mobile}
+      </div>
+    `;
+    document.title =
+      state.view === "design" ? "设计手串 · 木拾光" : "木拾光 · DIY 木珠搭配";
+  }
+
+  function renderSheet() {
+    if (state.detailMaterialId) {
+      const material = getMaterial(state.detailMaterialId);
+      if (!material) {
+        state.detailMaterialId = null;
+        return renderSheet();
+      }
+      const detail = getMaterialDetail(material);
+      const shapeClass =
+        material.shape === "square"
+          ? "square"
+          : material.shape === "hex"
+            ? "hex"
+            : "";
+      sheet.innerHTML = `
+        <div class="sheet material-detail-sheet">
+          <div class="sheet-handle"></div>
+          <div class="material-sheet__head">
+            <div class="material-sheet__bead ${shapeClass}" style="${getMaterialStyle(material)}"></div>
+            <div>
+              <span class="eyebrow" style="color:#8c958f;">MATERIAL DETAIL</span>
+              <h3 class="material-detail-title">${escapeHtml(material.name)}</h3>
+              <p class="material-detail-meta">${escapeHtml(material.categoryLabel)} · ${detail.priceRange}</p>
+            </div>
+          </div>
+          <div class="material-detail-chips">
+            <span>6—14mm可选</span>
+            <span>天然纹理</span>
+            <span>${material.shape ? "异形加工" : "圆珠为主"}</span>
+          </div>
+          <div class="material-detail-section">
+            <strong>材质特征</strong>
+            <p>${escapeHtml(detail.specific)}。${escapeHtml(detail.feature)}</p>
+          </div>
+          <div class="material-detail-section">
+            <strong>适合风格</strong>
+            <p>${escapeHtml(detail.style)}</p>
+          </div>
+          <div class="material-detail-section">
+            <strong>搭配建议</strong>
+            <p>${escapeHtml(detail.pairing)}</p>
+          </div>
+          <div class="material-detail-section">
+            <strong>养护方式</strong>
+            <p>${escapeHtml(detail.care)}</p>
+          </div>
+          <div class="material-detail-warning">
+            <strong>购买提示</strong>
+            <p>${escapeHtml(detail.legal)}</p>
+          </div>
+          <button class="primary-button" data-action="add-from-detail" data-id="${material.id}">选择尺寸并加入设计</button>
+        </div>
+      `;
+      sheet.classList.add("open");
+      sheet.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    if (state.publishDraft) {
+      const postSummary = calculateDesign(
+        state.beadIds,
+        state.productType,
+        state.beadSize,
+        state.beadSizes,
+        state.lineMaterial
+      );
+      sheet.innerHTML = `
+        <div class="sheet publish-sheet">
+          <div class="sheet-handle"></div>
+          <div class="publish-sheet__head">
+            <div>
+              <span class="eyebrow" style="color:#8c958f;">PUBLISH TO COMMUNITY</span>
+              <h3>发布到拾光社区</h3>
+            </div>
+            <div class="publish-sheet__price">¥${postSummary.totalPrice}</div>
+          </div>
+          <div class="publish-sheet__preview">${renderBoard(buildBracelet(state.beadIds, state.productType, state.beadSize, state.beadSizes), "", state.productType, state.lineMaterial)}</div>
+          <div class="field">
+            <label for="publish-name">社区昵称</label>
+            <input id="publish-name" class="text-control" maxlength="12" value="${escapeHtml(state.publishDraft.nickname)}" data-publish-field="nickname" />
+          </div>
+          <div class="field">
+            <label for="publish-note">设计故事</label>
+            <textarea id="publish-note" class="text-control" maxlength="90" placeholder="说说这次的材质、颜色和搭配想法" data-publish-field="note">${escapeHtml(state.publishDraft.note)}</textarea>
+          </div>
+          <button class="primary-button" data-action="confirm-publish">确认发布</button>
+        </div>
+      `;
+      sheet.classList.add("open");
+      sheet.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    const material = getMaterial(state.selectedMaterialId);
+    if (!material) {
+      sheet.classList.remove("open");
+      sheet.innerHTML = "";
+      sheet.setAttribute("aria-hidden", "true");
+      return;
+    }
+
+    const shapeClass = material.shape === "square" ? "square" : material.shape === "hex" ? "hex" : "";
+    sheet.innerHTML = `
+      <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-main">
+          <div class="material-bead ${shapeClass}" style="${getMaterialStyle(material)}"></div>
+          <div>
+            <h3>${escapeHtml(material.name)}</h3>
+            <p>${escapeHtml(material.categoryLabel)} · 6—14mm可选 · ¥${getEffectivePrice(material, 6)}—${getEffectivePrice(material, 14)}/颗</p>
+          </div>
+        </div>
+        <div class="sheet-note">${escapeHtml(material.note)}</div>
+        ${material.legalTip ? `<div class="sheet-tip">${escapeHtml(material.legalTip)}</div>` : ""}
+        <button class="primary-button" data-action="add-from-sheet" data-id="${material.id}">加入设计</button>
+      </div>
+    `;
+    sheet.classList.add("open");
+    sheet.setAttribute("aria-hidden", "false");
+  }
+
+  function closeSheet() {
+    state.selectedMaterialId = null;
+    state.detailMaterialId = null;
+    state.publishDraft = null;
+    renderSheet();
+  }
+
+  function openMaterialDetail(id) {
+    state.detailMaterialId = id;
+    state.selectedMaterialId = null;
+    state.publishDraft = null;
+    renderSheet();
+  }
+
+  function openPublishSheet() {
+    if (!state.beadIds.length) {
+      showToast("先完成一条设计");
+      return;
+    }
+    state.publishDraft = {
+      nickname: "木友",
+      note: `${state.designName}，${getProductName(state.productType)} ${state.beadSize}mm。`
+    };
+    renderSheet();
+  }
+
+  function createCheckout() {
+    const summary = calculateDesign(
+      state.beadIds,
+      state.productType,
+      state.beadSize,
+      state.beadSizes,
+      state.lineMaterial
+    );
+    const defaultWrist = state.productType === "ring" ? "1.7" : state.productType === "necklace" ? "44" : "17";
+    const checkout = {
+      designName: state.designName,
+      productType: state.productType,
+      beadSize: state.beadSize,
+      lineMaterial: state.lineMaterial,
+      beadIds: state.beadIds.slice(),
+      beadSizes: state.beadSizes.slice(),
+      summary,
+      wrist: defaultWrist,
+      giftWrap: false,
+      total: summary.totalPrice + 8,
+      form: {
+        receiver: "",
+        phone: "",
+        address: "",
+        engraving: "",
+        remark: ""
+      }
+    };
+    state.checkout = checkout;
+    return checkout;
+  }
+
+  function createParentComboCheckout() {
+    const packageItem = PACKAGES.find((item) => item.id === "parentChild");
+    if (!packageItem) {
+      return;
+    }
+    const tierData = getPackageTierData(packageItem, state.selectedTierId);
+    const childSize = Math.max(6, tierData.beadSize - 2);
+    const childIds = getParentChildChildIds(
+      tierData.ids,
+      state.packageDetail.parentTheme,
+      childSize
+    );
+    const childSizes = createSizeArray(childIds.length, childSize);
+    const childSummary = calculateDesign(
+      childIds,
+      "bracelet",
+      childSize,
+      childSizes,
+      tierData.tier.lineMaterial
+    );
+    const adultTotal = tierData.summary.totalPrice;
+    const childTotal = childSummary.totalPrice;
+    const comboPrice = Math.round((adultTotal + childTotal) * 0.82);
+    const summary = {
+      ...tierData.summary,
+      count: tierData.summary.count + childSummary.count,
+      totalPrice: comboPrice,
+      productName: "亲子双串",
+      fitLabel: "成人/儿童手围",
+      wristRange: `${state.packageDetail.adultWrist}/${state.packageDetail.childWrist}cm`,
+      comboDiscount: adultTotal + childTotal - comboPrice
+    };
+
+    state.checkout = {
+      designName: `${packageItem.name} · 一大一小`,
+      productType: "bracelet",
+      beadSize: tierData.beadSize,
+      lineMaterial: tierData.tier.lineMaterial,
+      beadIds: tierData.ids.slice(),
+      beadSizes: createSizeArray(tierData.ids.length, tierData.beadSize),
+      summary,
+      wrist: state.packageDetail.adultWrist,
+      giftWrap: true,
+      total: comboPrice + 8,
+      combo: {
+        packageId: packageItem.id,
+        tierId: state.selectedTierId,
+        adult: {
+          beadIds: tierData.ids.slice(),
+          beadSizes: createSizeArray(tierData.ids.length, tierData.beadSize),
+          beadSize: tierData.beadSize,
+          summary: tierData.summary,
+          wrist: state.packageDetail.adultWrist,
+          lineMaterial: tierData.tier.lineMaterial
+        },
+        child: {
+          beadIds: childIds,
+          beadSizes: childSizes,
+          beadSize: childSize,
+          summary: childSummary,
+          wrist: state.packageDetail.childWrist,
+          lineMaterial: tierData.tier.lineMaterial
+        },
+        discount: summary.comboDiscount
+      },
+      form: {
+        receiver: "",
+        phone: "",
+        address: "",
+        engraving: "",
+        remark: `亲子套餐：成人手围${state.packageDetail.adultWrist}cm，儿童手围${state.packageDetail.childWrist}cm`
+      }
+    };
+    state.view = "checkout";
+    render();
+  }
+
+  function createCoupleCheckout() {
+    const packageItem = PACKAGES.find((item) => item.id === "coupleMemory");
+    if (!packageItem) {
+      return;
+    }
+    const tierData = getPackageTierData(packageItem, state.selectedTierId);
+    const secondIds = getCoupleSecondIds(
+      tierData.ids,
+      state.packageDetail.coupleTheme
+    );
+    const secondSizes = createSizeArray(secondIds.length, tierData.beadSize);
+    const secondSummary = calculateDesign(
+      secondIds,
+      "bracelet",
+      tierData.beadSize,
+      secondSizes,
+      tierData.tier.lineMaterial
+    );
+    const firstTotal = tierData.summary.totalPrice;
+    const secondTotal = secondSummary.totalPrice;
+    const comboPrice = Math.round((firstTotal + secondTotal) * 0.92);
+    const summary = {
+      ...tierData.summary,
+      count: tierData.summary.count + secondSummary.count,
+      totalPrice: comboPrice,
+      productName: "情侣双串",
+      fitLabel: "两人手围",
+      wristRange: `17/${state.packageDetail.partnerWrist}cm`,
+      comboDiscount: firstTotal + secondTotal - comboPrice
+    };
+
+    state.checkout = {
+      designName: `${packageItem.name} · 情侣双串`,
+      productType: "bracelet",
+      beadSize: tierData.beadSize,
+      lineMaterial: tierData.tier.lineMaterial,
+      beadIds: tierData.ids.slice(),
+      beadSizes: createSizeArray(tierData.ids.length, tierData.beadSize),
+      summary,
+      wrist: "17",
+      giftWrap: true,
+      total: comboPrice + 8,
+      combo: {
+        packageId: packageItem.id,
+        tierId: state.selectedTierId,
+        adult: {
+          beadIds: tierData.ids.slice(),
+          beadSizes: createSizeArray(tierData.ids.length, tierData.beadSize),
+          beadSize: tierData.beadSize,
+          summary: tierData.summary,
+          wrist: "17",
+          lineMaterial: tierData.tier.lineMaterial
+        },
+        child: {
+          beadIds: secondIds,
+          beadSizes: secondSizes,
+          beadSize: tierData.beadSize,
+          summary: secondSummary,
+          wrist: state.packageDetail.partnerWrist,
+          lineMaterial: tierData.tier.lineMaterial
+        },
+        discount: summary.comboDiscount
+      },
+      form: {
+        receiver: "",
+        phone: "",
+        address: "",
+        engraving: "",
+        remark: `情侣双串：第二只手围${state.packageDetail.partnerWrist}cm，可在此填写姓名或纪念日期`
+      }
+    };
+    state.view = "checkout";
+    render();
+  }
+
+  function addBead(id) {
+    if (!getMaterial(id)) {
+      return;
+    }
+    if (state.beadIds.length >= getMaxCount(state.productType)) {
+      showToast(`最多选择 ${getMaxCount(state.productType)} 颗`);
+      return;
+    }
+    state.beadIds.push(id);
+    state.beadSizes.push(state.beadSize);
+    state.designName = "自定义设计";
+    render();
+    if (sheet.classList.contains("open")) {
+      closeSheet();
+    }
+  }
+
+  function removeLast(id) {
+    const index = state.beadIds.lastIndexOf(id);
+    if (index < 0) {
+      return;
+    }
+    state.beadIds.splice(index, 1);
+    state.beadSizes.splice(index, 1);
+    state.designName = "自定义设计";
+    render();
+  }
+
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+  }
+
+  function submitOrder() {
+    const checkout = state.checkout || createCheckout();
+    const form = checkout.form;
+
+    if (!form.receiver.trim()) {
+      showToast("请填写收货人");
+      return;
+    }
+    if (!/^1\d{10}$/.test(form.phone)) {
+      showToast("请填写正确手机号");
+      return;
+    }
+    if (!form.address.trim()) {
+      showToast("请填写收货地址");
+      return;
+    }
+
+    const order = {
+      id: `MSG${Date.now()}`,
+      status: "待付款",
+      designName: checkout.designName,
+      productType: checkout.productType,
+      beadSize: checkout.beadSize,
+      lineMaterial: checkout.lineMaterial,
+      beadIds: checkout.beadIds.slice(),
+      beadSizes: checkout.beadSizes.slice(),
+      combo: checkout.combo || null,
+      summary: checkout.summary,
+      wrist: checkout.wrist,
+      giftWrap: checkout.giftWrap,
+      totalPrice: checkout.total,
+      receiver: form.receiver.trim(),
+      phone: form.phone,
+      address: form.address.trim(),
+      engraving: form.engraving.trim(),
+      remark: form.remark.trim(),
+      createdAt: Date.now()
+    };
+
+    state.orders.unshift(order);
+    writeStore(STORAGE_KEYS.orders, state.orders);
+    state.checkout = null;
+    state.view = "orders";
+    showToast("订单已创建到本地记录");
+    render();
+  }
+
+  document.addEventListener("click", (event) => {
+    const actionTarget = event.target.closest("[data-action]");
+    if (!actionTarget) {
+      return;
+    }
+
+    const action = actionTarget.dataset.action;
+    const id = actionTarget.dataset.id;
+    const index = Number(actionTarget.dataset.index);
+
+    switch (action) {
+      case "go-tab":
+        state.view = actionTarget.dataset.tab;
+        state.checkout = null;
+        render();
+        break;
+      case "start-blank":
+        state.beadIds = [];
+        state.beadSizes = [];
+        state.designName = "空白设计";
+        state.view = "design";
+        render();
+        break;
+      case "use-template": {
+        const template = TEMPLATES.find((item) => item.id === id);
+        if (template) {
+          if (state.view === "home") {
+            state.productType = "bracelet";
+            state.beadSize = 12;
+          }
+          state.beadIds = template.materialIds.slice();
+          state.beadSizes =
+            template.beadSizes?.slice() ||
+            createSizeArray(state.beadIds.length, state.beadSize);
+          resizeBeadIdsForProduct(state.productType, state.beadSize, true);
+          state.designName = template.name;
+          state.view = "design";
+          render();
+        }
+        break;
+      }
+      case "use-package": {
+        const packageItem = PACKAGES.find((item) => item.id === id);
+        if (packageItem) {
+          state.productType = packageItem.productType;
+          state.beadSize = packageItem.beadSize;
+          state.lineMaterial = "elastic";
+          state.beadIds = packageItem.materialIds.slice();
+          state.beadSizes = createSizeArray(state.beadIds.length, state.beadSize);
+          resizeBeadIdsForProduct(state.productType, state.beadSize, true);
+          state.designName = packageItem.name;
+          state.view = "design";
+          render();
+        }
+        break;
+      }
+      case "open-package":
+        state.selectedPackageId = id;
+        state.selectedTierId = "recommended";
+        state.packageDetail.corporateNote = "";
+        state.view = "packageDetail";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        break;
+      case "select-tier":
+        if (PACKAGE_TIERS.some((item) => item.id === id)) {
+          state.selectedTierId = id;
+          render();
+        }
+        break;
+      case "set-package-option": {
+        const field = actionTarget.dataset.field;
+        const value = actionTarget.dataset.value;
+        if (field && value != null) {
+          state.packageDetail[field] = value;
+          render();
+        }
+        break;
+      }
+      case "use-tier": {
+        const packageItem = PACKAGES.find(
+          (item) => item.id === actionTarget.dataset.package
+        );
+        if (packageItem) {
+          const tierData = getPackageTierData(
+            packageItem,
+            actionTarget.dataset.tier || state.selectedTierId
+          );
+          state.productType = packageItem.productType;
+          state.beadSize = tierData.beadSize;
+          state.lineMaterial = tierData.tier.lineMaterial;
+          state.beadIds = tierData.ids.slice();
+          state.beadSizes = createSizeArray(
+            state.beadIds.length,
+            state.beadSize
+          );
+          state.designName = `${packageItem.name} · ${tierData.tier.name}`;
+          state.view = "design";
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        break;
+      }
+      case "checkout-parent":
+        createParentComboCheckout();
+        break;
+      case "checkout-couple":
+        createCoupleCheckout();
+        break;
+      case "set-product":
+        if (PRODUCT_TYPES.some((item) => item.id === id)) {
+          state.productType = id;
+          resizeBeadIdsForProduct(id, state.beadSize, true);
+          render();
+        }
+        break;
+      case "set-bead-size": {
+        const nextSize = Number(actionTarget.dataset.value);
+        if (BEAD_SIZES.includes(nextSize)) {
+          state.beadSize = nextSize;
+          render();
+        }
+        break;
+      }
+      case "set-line-material":
+        if (STRING_MATERIALS.some((item) => item.id === id)) {
+          state.lineMaterial = id;
+          render();
+        }
+        break;
+      case "apply-palette": {
+        const palette = COLOR_PALETTES.find((item) => item.id === id);
+        if (palette) {
+          const target = getTargetCount(state.productType, state.beadSize);
+          state.beadIds = Array.from(
+            { length: target },
+            (_, index) => palette.materialIds[index % palette.materialIds.length]
+          );
+          state.beadSizes = createSizeArray(target, state.beadSize);
+          state.lineMaterial = palette.lineMaterial;
+          state.designName = palette.name;
+          render();
+          showToast(`已套用${palette.name}`);
+        }
+        break;
+      }
+      case "set-category":
+        state.category = id;
+        render();
+        break;
+      case "set-inspiration":
+        if (["all", "daily", "gift", "mixed"].includes(id)) {
+          state.inspirationCategory = id;
+          render();
+        }
+        break;
+      case "set-knowledge-category":
+        state.knowledgeCategory = id;
+        render();
+        break;
+      case "add-bead":
+        addBead(id);
+        break;
+      case "remove-bead":
+        removeLast(id);
+        break;
+      case "remove-at":
+        if (index >= 0 && index < state.beadIds.length) {
+          state.beadIds.splice(index, 1);
+          state.beadSizes.splice(index, 1);
+          state.designName = "自定义设计";
+          render();
+        }
+        break;
+      case "undo":
+        if (state.beadIds.length) {
+          state.beadIds.pop();
+          state.beadSizes.pop();
+          state.designName = "自定义设计";
+          render();
+        }
+        break;
+      case "clear-design":
+        if (window.confirm("确定清空当前设计吗？")) {
+          state.beadIds = [];
+          state.beadSizes = [];
+          state.designName = "空白设计";
+          render();
+        }
+        break;
+      case "show-material":
+        state.selectedMaterialId = id;
+        renderSheet();
+        break;
+      case "open-material-detail":
+        openMaterialDetail(id);
+        break;
+      case "add-from-sheet":
+        addBead(id);
+        break;
+      case "add-from-detail": {
+        const detailId = id;
+        closeSheet();
+        state.view = "design";
+        addBead(detailId);
+        break;
+      }
+      case "open-publish":
+        openPublishSheet();
+        break;
+      case "confirm-publish": {
+        if (!state.publishDraft || !state.beadIds.length) {
+          return;
+        }
+        const post = {
+          id: `post-${Date.now()}`,
+          designer: state.publishDraft.nickname.trim() || "匿名木友",
+          note: state.publishDraft.note.trim() || "分享一份独一无二的木珠搭配。",
+          beadIds: state.beadIds.slice(),
+          beadSizes: state.beadSizes.slice(),
+          productType: state.productType,
+          beadSize: state.beadSize,
+          lineMaterial: state.lineMaterial,
+          likes: 0,
+          liked: false,
+          createdAt: Date.now()
+        };
+        state.communityPosts.unshift(post);
+        writeStore(STORAGE_KEYS.community, state.communityPosts);
+        state.publishDraft = null;
+        closeSheet();
+        state.view = "community";
+        render();
+        showToast("已发布到拾光社区");
+        break;
+      }
+      case "close-sheet":
+        closeSheet();
+        break;
+      case "save-design": {
+        if (!state.beadIds.length) {
+          showToast("先选择珠子");
+          return;
+        }
+        const design = {
+          id: `design-${Date.now()}`,
+          name: state.designName,
+          productType: state.productType,
+          beadSize: state.beadSize,
+          lineMaterial: state.lineMaterial,
+          beadIds: state.beadIds.slice(),
+          beadSizes: state.beadSizes.slice(),
+          summary: calculateDesign(
+            state.beadIds,
+            state.productType,
+            state.beadSize,
+            state.beadSizes,
+            state.lineMaterial
+          ),
+          createdAt: Date.now()
+        };
+        state.designs.unshift(design);
+        state.designs = state.designs.slice(0, 30);
+        writeStore(STORAGE_KEYS.designs, state.designs);
+        showToast("设计已保存");
+        break;
+      }
+      case "use-design": {
+        const design = state.designs.find((item) => item.id === id);
+        if (design) {
+          state.beadIds = design.beadIds.slice();
+          state.designName = design.name;
+          state.productType = design.productType || "bracelet";
+          state.beadSize = design.beadSize || 12;
+          state.lineMaterial = design.lineMaterial || "elastic";
+          state.beadSizes =
+            design.beadSizes || createSizeArray(state.beadIds.length, state.beadSize);
+          state.view = "design";
+          render();
+        }
+        break;
+      }
+      case "delete-design":
+        state.designs = state.designs.filter((item) => item.id !== id);
+        writeStore(STORAGE_KEYS.designs, state.designs);
+        render();
+        break;
+      case "checkout":
+        createCheckout();
+        state.view = "checkout";
+        render();
+        break;
+      case "back-design":
+        state.view = "design";
+        render();
+        break;
+      case "set-wrist":
+        if (state.checkout) {
+          state.checkout.wrist = actionTarget.dataset.value;
+          render();
+        }
+        break;
+      case "submit-order":
+        submitOrder();
+        break;
+      case "open-orders":
+        state.view = "orders";
+        render();
+        break;
+      case "open-knowledge":
+        state.view = "knowledge";
+        render();
+        break;
+      case "open-service":
+        state.serviceForm.type = actionTarget.dataset.context
+          ? "团体礼品"
+          : state.serviceForm.type;
+        state.serviceForm.message = actionTarget.dataset.context
+          ? `咨询内容：${actionTarget.dataset.context}；团体备注：${state.packageDetail.corporateNote || "待补充"}`
+          : state.serviceForm.message;
+        state.view = "service";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        break;
+      case "set-service-type":
+        state.serviceForm.type = actionTarget.dataset.value;
+        render();
+        break;
+      case "submit-service": {
+        const form = state.serviceForm;
+        if (!form.name.trim() || !form.phone.trim() || !form.message.trim()) {
+          showToast("请填写称呼、联系方式和具体需求");
+          return;
+        }
+        state.serviceInquiries.unshift({
+          id: `service-${Date.now()}`,
+          ...form,
+          createdAt: Date.now()
+        });
+        writeStore(STORAGE_KEYS.service, state.serviceInquiries);
+        state.serviceForm = {
+          name: "",
+          phone: "",
+          type: form.type,
+          message: ""
+        };
+        render();
+        showToast("咨询已提交");
+        break;
+      }
+      case "like-post": {
+        const post = state.communityPosts.find((item) => item.id === id);
+        if (post) {
+          post.liked = !post.liked;
+          post.likes = Math.max(0, Number(post.likes || 0) + (post.liked ? 1 : -1));
+          writeStore(STORAGE_KEYS.community, state.communityPosts);
+          render();
+        }
+        break;
+      }
+      case "use-post": {
+        const post = state.communityPosts.find((item) => item.id === id);
+        if (post) {
+          state.productType = post.productType || "bracelet";
+          state.beadSize = post.beadSize || 12;
+          state.lineMaterial = post.lineMaterial || "elastic";
+          state.beadIds = post.beadIds.slice();
+          state.beadSizes =
+            post.beadSizes || createSizeArray(state.beadIds.length, state.beadSize);
+          state.designName = `${post.designer || "木友"}的设计`;
+          state.view = "design";
+          render();
+        }
+        break;
+      }
+      case "mark-paid": {
+        const order = state.orders.find((item) => item.id === id);
+        if (order) {
+          order.status = "制作中";
+          writeStore(STORAGE_KEYS.orders, state.orders);
+          render();
+          showToast("已模拟支付");
+        }
+        break;
+      }
+      case "cancel-order":
+        if (window.confirm("确定取消这笔订单吗？")) {
+          state.orders = state.orders.filter((item) => item.id !== id);
+          writeStore(STORAGE_KEYS.orders, state.orders);
+          render();
+        }
+        break;
+      case "view-order": {
+        const order = state.orders.find((item) => item.id === id);
+        if (order) {
+          window.alert(
+            `${order.designName}\n${order.summary.count}颗，手围${order.wrist}cm\n收货人：${order.receiver}\n地址：${order.address}`
+          );
+        }
+        break;
+      }
+      case "clear-data":
+        if (window.confirm("将删除全部本地设计、订单和社区发布，确定继续吗？")) {
+          state.designs = [];
+          state.orders = [];
+          state.communityPosts = createSeedPosts();
+          state.serviceInquiries = [];
+          writeStore(STORAGE_KEYS.designs, []);
+          writeStore(STORAGE_KEYS.orders, []);
+          writeStore(STORAGE_KEYS.community, state.communityPosts);
+          writeStore(STORAGE_KEYS.service, []);
+          render();
+          showToast("本地记录已清除");
+        }
+        break;
+      default:
+        break;
+    }
+  });
+
+  document.addEventListener("input", (event) => {
+    const packageField = event.target.dataset.packageField;
+    if (packageField) {
+      state.packageDetail[packageField] = event.target.value;
+      return;
+    }
+
+    const serviceField = event.target.dataset.serviceField;
+    if (serviceField) {
+      state.serviceForm[serviceField] = event.target.value;
+      return;
+    }
+
+    const publishField = event.target.dataset.publishField;
+    if (publishField && state.publishDraft) {
+      state.publishDraft[publishField] = event.target.value;
+      return;
+    }
+
+    const field = event.target.dataset.field;
+    if (!field || !state.checkout) {
+      return;
+    }
+    state.checkout.form[field] = event.target.value;
+  });
+
+  document.addEventListener("change", (event) => {
+    if (event.target.id !== "gift-wrap" || !state.checkout) {
+      return;
+    }
+    state.checkout.giftWrap = event.target.checked;
+    render();
+  });
+
+  sheet.addEventListener("click", (event) => {
+    if (event.target === sheet) {
+      closeSheet();
+    }
+  });
+
+  render();
+})();
+
+    </script>
+  </body>
+</html>
